@@ -19,17 +19,18 @@
       "warn",
       2
     ],
-    "no-console": 0,
+    "no-console": ["warn", { allow: ["info"] }],
     "no-unused-vars": [
       "warn"
     ],
-    "prettier/prettier": "error",
+    "prettier/prettier": "warn",
     "semi": [
       "error",
       "always"
     ],
     "quotes": [
-      "warn"
+      "warn",
+      "single"
     ]
   }
 }
