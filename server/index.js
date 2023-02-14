@@ -3,9 +3,8 @@ const server = express();
 
 server.use(express.json());
 
-
 const serverEndpoints = () => {
-return server;
+  return server;
 };
 
 module.exports = { serverEndpoints };
