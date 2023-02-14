@@ -23,8 +23,6 @@ Table tv_shows {
   name varchar(64) [not null]
 }
 ```
-
-
 ## Auth Table
 ```
 Table auth {
@@ -38,12 +36,12 @@ Table auth {
 
 ```
 Table user_show {
-  product_id id [ref: > product.id, not null]
-  order_id id [ ref: > order_info.id, not null]
-  quantity int [not null]
+  show_id id [ref: > tv_shows.id, not null]
+  user_id id [ ref: > order_info.id, not null]
+  show_progress varchar(64) [not null]
 
   Indexes: {
-    (product_id, order_id) [ name: 'order_product_index', unique ]
+    (show_id, user_id) [ name: 'show_user_index', unique ]
   }
 }
 ```

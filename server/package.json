@@ -8,7 +8,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "nodemon ./src/index.js",
+    "migrate": "knex migrate:latest",
+    "seed": "knex seed:run"
   },
   "author": "",
   "license": "ISC",
