@@ -32,9 +32,30 @@ module.exports = {
       .where('users.user_id', userId);
   },
 
-  checkExisting(showName) {
-    const booleanResult = knex(TV_SHOWS_TABLE).select('name').where('name', showName)
-    return 
+  async postNewShow(newShowObject) {
+    async function checkExists(showName) {
+      const checkExisting = await knex(TV_SHOWS_TABLE)
+        .select('name')
+        .where('name', showName);
+      const resultBoolean = checkExisting.length !== 0 ? true : false;
+      return resultBoolean;
+    }
+    const checkShow = await checkExists(newShowObject.showName);
+    if (!checkShow) {
+      const getLength = await knex(TV_SHOWS_TABLE).select('*');
+      await knex(TV_SHOWS_TABLE).insert({show_id: getLength.lenght, name: newShowObject.showName });
+      const checkNew = await knex(TV_SHOWS_TABLE).select('*');
+      console.log(checkNew)
+      await knex(TV_SHOWS_TABLE)
+        .where('name', newShowObject.showName)
+        .returning('name')
+        .del()
+        .then((result) => {
+          console.log('removed test');
+        })
+        .catch(console.error);
+    }
+    return checkShow ? true : false;
   },
 
   //

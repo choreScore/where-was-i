@@ -4,7 +4,7 @@ module.exports = {
   getShow() {
     return [
       {
-        user_id: USER_ID,
+        userId: USER_ID,
         showName: 'Breaking Bad',
         season: 2,
         episode: 10,

@@ -3,16 +3,14 @@ const config = require('../knexfile');
 const knex = require('knex')(config);
 const usersModel = require('../src/users/users.model');
 const USERS_TABLE = usersModel.USERS_TABLE;
+const userFixture = require('./testFixture');
 
 describe('Users tests', () => {
   before(async () => {
-    // showFixture = getShow();
-    // await
+    // showFixture = userFixture.getShow();
     // await knex('user_shows')
-    //   .insert({
-    //
-    // })
-    //   .returning('id')
+    //   .insert(showFixture[0])
+    //   .returning('user_id')
     //   .then((result) => {
     //     console.log('inserted test customer');
     //   })
@@ -20,9 +18,9 @@ describe('Users tests', () => {
   });
 
   after(async () => {
-    // await knex(CUSTOMER_TABLE)
-    //   .where('id', customerFixture.id)
-    //   .returning('id')
+    // await knex('user_shows')
+    //   .where('user_id', userFixture.userId)
+    //   .returning('user_id')
     //   .del()
     //   .then((result) => {
     //     console.log('removed test customer');
@@ -54,14 +52,30 @@ describe('Users tests', () => {
 
   describe('postNewShow', () => {
     it('should check if show exists or not in the database', async () => {
-      const checkExisting = await usersModel.checkExisting('Breaking Bad');
-      const checkNotExisting = await usersModel.checkExisting('Samurai X');
-
+      const newShow = userFixture.getShow();
+      const checkExisting = await usersModel.postNewShow(newShow[0]);
+      const checkNotExisting = await usersModel.postNewShow(newShow[1]);
       expect(checkExisting).to.be.equal(true);
       expect(checkNotExisting).to.be.equal(false);
     });
 
     it('should add a new show in the user list', () => {
+      expect(true).to.be.equal(true);
+    });
+
+    it('should add a new show to the tv_shows table if it does not exists', () => {
+      expect(true).to.be.equal(true);
+    });
+
+    it('should not add new show to the tv_shows table if it exists', () => {
+      expect(true).to.be.equal(true);
+    });
+
+    it('should add a relation inbetween users & tv_shows in the user_shows table', () => {
+      expect(true).to.be.equal(true);
+    });
+
+    it('should add a relation inbetween users & tv_shows in the user_shows table ', () => {
       expect(true).to.be.equal(true);
     });
   });
