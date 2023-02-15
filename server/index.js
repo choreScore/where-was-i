@@ -5,6 +5,9 @@ server.use(express.json());
 
 
 const serverEndpoints = () => {
+server.get('/')
+
+
 return server;
 };
 
