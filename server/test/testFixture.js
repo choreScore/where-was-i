@@ -1,4 +1,4 @@
-const USER_ID = 1;
+const USER_ID = 5;
 
 module.exports = {
   getShow() {
@@ -16,6 +16,16 @@ module.exports = {
         episode: 4,
       },
     ];
+  },
+
+  updateShow() {
+    return {
+      user_id: USER_ID,
+      show_id: 6,
+      showName: 'Cowboy Bebop',
+      season: 1,
+      episode: 4,
+    };
   },
   // getOrder() {
   //   return {

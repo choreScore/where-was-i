@@ -28,15 +28,63 @@ module.exports = {
         userId: 'users.user_id',
         username: 'users.username',
         showname: 'tv_shows.name',
+        show_id: 'tv_shows.show_id',
+        season: 'user_shows.season',
+        episode: 'user_shows.episode',
       })
       .where('users.user_id', userId);
   },
 
-  checkExisting(showName) {
-    const booleanResult = knex(TV_SHOWS_TABLE).select('name').where('name', showName)
-    return 
+  async postNewShow(newShowObject) {
+    // CHECK IF SHOW IS ON OUR DATABASE
+    async function checkExists(showName) {
+      const checkExisting = await knex(TV_SHOWS_TABLE)
+        .select('name')
+        .where('name', showName);
+      const resultBoolean = checkExisting.length !== 0 ? true : false;
+      return resultBoolean;
+    }
+
+    const checkShow = await checkExists(newShowObject.showName);
+
+    //IF IS NOT ADD IT
+    if (!checkShow) {
+      const allShows = await knex(TV_SHOWS_TABLE).select('*');
+      await knex(TV_SHOWS_TABLE).insert({
+        show_id: allShows.length + 1,
+        name: newShowObject.showName,
+      });
+    }
+    // ELSE JUST ADD TO USER MOVIE TABLE
+    const movieId = await knex(TV_SHOWS_TABLE)
+      .where('name', newShowObject.showName)
+      .returning('show_id');
+
+    return await knex(USER_SHOW_TABLE).insert({
+      user_id: newShowObject.user_id,
+      show_id: movieId[0].show_id,
+      season: newShowObject.season,
+      episode: newShowObject.episode,
+    });
   },
 
+  async deleteShow(showId, userId) {
+    return await knex(USER_SHOW_TABLE)
+      .where({ show_id: showId, user_id: userId })
+      .del();
+  },
+
+  async updateProgress(progressObject) {
+    return await knex(USER_SHOW_TABLE)
+      .where({
+        show_id: progressObject.show_id,
+        user_id: progressObject.user_id,
+      })
+      .update({
+        season: progressObject.season,
+        episode: progressObject.episode,
+      });
+  },
   //
   //   /**
   //    * @param {number} id - The customer's id.

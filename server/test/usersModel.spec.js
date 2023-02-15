@@ -3,31 +3,36 @@ const config = require('../knexfile');
 const knex = require('knex')(config);
 const usersModel = require('../src/users/users.model');
 const USERS_TABLE = usersModel.USERS_TABLE;
+const userFixture = require('./testFixture');
 
 describe('Users tests', () => {
   before(async () => {
-    // showFixture = getShow();
-    // await
+    // showFixture = userFixture.getShow();
     // await knex('user_shows')
-    //   .insert({
-    //
-    // })
-    //   .returning('id')
+    //   .insert(showFixture[0])
+    //   .returning('user_id')
     //   .then((result) => {
     //     console.log('inserted test customer');
     //   })
     //   .catch(console.error);
   });
 
-  after(async () => {
-    // await knex(CUSTOMER_TABLE)
-    //   .where('id', customerFixture.id)
-    //   .returning('id')
-    //   .del()
-    //   .then((result) => {
-    //     console.log('removed test customer');
-    //   })
-    //   .catch(console.error);
+  afterEach(async () => {
+    await knex('tv_shows')
+      .where('name', userFixture.getShow()[1].showName)
+      .returning('name')
+      .del()
+      .then(() => {
+        console.info('--- new test --');
+      })
+      .catch(console.info);
+
+    await knex('user_shows')
+      .where('user_id', userFixture.getShow()[1].user_id)
+      .returning('user_id')
+      .del()
+      .then(() => {})
+      .catch(console.info);
   });
 
   describe('setup', () => {
@@ -53,16 +58,34 @@ describe('Users tests', () => {
   });
 
   describe('postNewShow', () => {
-    it('should check if show exists or not in the database', async () => {
-      const checkExisting = await usersModel.checkExisting('Breaking Bad');
-      const checkNotExisting = await usersModel.checkExisting('Samurai X');
-
-      expect(checkExisting).to.be.equal(true);
-      expect(checkNotExisting).to.be.equal(false);
+    it('should add a new show to the tv_shows table if it does not exists', async () => {
+      const newShow = userFixture.getShow();
+      await usersModel.postNewShow(newShow[1]);
+      const shows = await usersModel.getShowList(5);
+      expect(shows[0].showname).to.be.equal('Cowboy Bebop');
     });
+  });
 
-    it('should add a new show in the user list', () => {
-      expect(true).to.be.equal(true);
+  describe('deleteShow', () => {
+    it('should delete from user_shows_table row matching user/show', async () => {
+      const newShow = userFixture.getShow();
+      await usersModel.postNewShow(newShow[1]);
+      await usersModel.deleteShow(6, 5);
+      const shows = await usersModel.getShowList(5);
+      expect(shows[0]).to.be.equal(undefined);
+    });
+  });
+
+  describe('updateProgress', () => {
+    it('should update progress on user_shows', async () => {
+      const newShow = userFixture.updateShow();
+      await usersModel.postNewShow(newShow);
+      newShow.season = 2;
+      newShow.episode = 4;
+      await usersModel.updateProgress(newShow);
+      const shows = await usersModel.getShowList(5);
+      expect(shows[0].season).to.be.equal(2);
+      expect(shows[0].episode).to.be.equal(4);
     });
   });
 
