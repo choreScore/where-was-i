@@ -28,11 +28,15 @@ module.exports = {
         userId: 'users.user_id',
         username: 'users.username',
         showname: 'tv_shows.name',
+        show_id: 'tv_shows.show_id',
+        season: 'user_shows.season',
+        episode: 'user_shows.episode',
       })
       .where('users.user_id', userId);
   },
 
   async postNewShow(newShowObject) {
+    // CHECK IF SHOW IS ON OUR DATABASE
     async function checkExists(showName) {
       const checkExisting = await knex(TV_SHOWS_TABLE)
         .select('name')
@@ -40,24 +44,47 @@ module.exports = {
       const resultBoolean = checkExisting.length !== 0 ? true : false;
       return resultBoolean;
     }
+
     const checkShow = await checkExists(newShowObject.showName);
+
+    //IF IS NOT ADD IT
     if (!checkShow) {
-      const getLength = await knex(TV_SHOWS_TABLE).select('*');
-      await knex(TV_SHOWS_TABLE).insert({show_id: getLength.lenght, name: newShowObject.showName });
-      const checkNew = await knex(TV_SHOWS_TABLE).select('*');
-      console.log(checkNew)
-      await knex(TV_SHOWS_TABLE)
-        .where('name', newShowObject.showName)
-        .returning('name')
-        .del()
-        .then((result) => {
-          console.log('removed test');
-        })
-        .catch(console.error);
+      const allShows = await knex(TV_SHOWS_TABLE).select('*');
+      await knex(TV_SHOWS_TABLE).insert({
+        show_id: allShows.length + 1,
+        name: newShowObject.showName,
+      });
     }
-    return checkShow ? true : false;
+    // ELSE JUST ADD TO USER MOVIE TABLE
+    const movieId = await knex(TV_SHOWS_TABLE)
+      .where('name', newShowObject.showName)
+      .returning('show_id');
+
+    return await knex(USER_SHOW_TABLE).insert({
+      user_id: newShowObject.user_id,
+      show_id: movieId[0].show_id,
+      season: newShowObject.season,
+      episode: newShowObject.episode,
+    });
   },
 
+  async deleteShow(showId, userId) {
+    return await knex(USER_SHOW_TABLE)
+      .where({ show_id: showId, user_id: userId })
+      .del();
+  },
+
+  async updateProgress(progressObject) {
+    return await knex(USER_SHOW_TABLE)
+      .where({
+        show_id: progressObject.show_id,
+        user_id: progressObject.user_id,
+      })
+      .update({
+        season: progressObject.season,
+        episode: progressObject.episode,
+      });
+  },
   //
   //   /**
   //    * @param {number} id - The customer's id.
