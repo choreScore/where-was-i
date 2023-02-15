@@ -1,4 +1,4 @@
-const config = require('../../db/knexfile');
+const config = require('../../knexfile');
 const knex = require('knex')(config);
 // const { validProps, requiredProps } = require('../util/validation');
 //
@@ -20,7 +20,7 @@ module.exports = {
    * @return {Promise<Array>} A promise that resolves to an array of customers.
    */
 
-  getAllShows(userId) {
+  getShowList(userId) {
     return knex(USERS_TABLE)
       .join(USER_SHOW_TABLE, 'users.user_id', 'user_shows.user_id')
       .join(TV_SHOWS_TABLE, 'user_shows.show_id', 'tv_shows.show_id')
@@ -30,6 +30,11 @@ module.exports = {
         showname: 'tv_shows.name',
       })
       .where('users.user_id', userId);
+  },
+
+  checkExisting(showName) {
+    const booleanResult = knex(TV_SHOWS_TABLE).select('name').where('name', showName)
+    return 
   },
 
   //

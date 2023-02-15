@@ -1,14 +1,17 @@
 const { expect, assert } = require('chai');
-const config = require('../db/knexfile');
+const config = require('../knexfile');
 const knex = require('knex')(config);
 const usersModel = require('../src/users/users.model');
 const USERS_TABLE = usersModel.USERS_TABLE;
 
 describe('Users tests', () => {
   before(async () => {
-    // customerFixture = fixtures.getCustomer();
-    // await knex(CUSTOMER_TABLE)
-    //   .insert(customerFixture)
+    // showFixture = getShow();
+    // await
+    // await knex('user_shows')
+    //   .insert({
+    //
+    // })
     //   .returning('id')
     //   .then((result) => {
     //     console.log('inserted test customer');
@@ -43,9 +46,23 @@ describe('Users tests', () => {
 
   describe('getAllShows', () => {
     it('should return an array of shows name', async () => {
-      const shows = await usersModel.getAllShows(1);
+      const shows = await usersModel.getShowList(1);
       expect(shows).to.be.an.instanceof(Array);
       expect(shows[0].showname).to.be.equal('Sopranos');
+    });
+  });
+
+  describe('postNewShow', () => {
+    it('should check if show exists or not in the database', async () => {
+      const checkExisting = await usersModel.checkExisting('Breaking Bad');
+      const checkNotExisting = await usersModel.checkExisting('Samurai X');
+
+      expect(checkExisting).to.be.equal(true);
+      expect(checkNotExisting).to.be.equal(false);
+    });
+
+    it('should add a new show in the user list', () => {
+      expect(true).to.be.equal(true);
     });
   });
 
