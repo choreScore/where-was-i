@@ -1,14 +1,9 @@
-const express = require("express");
-const server = express();
+const { serverEndpoints } = require('./src/server.js');
 
-server.use(express.json());
+const server = serverEndpoints();
 
+const PORT = 4000;
 
-const serverEndpoints = () => {
-server.get('/')
-
-
-return server;
-};
-
-module.exports = { serverEndpoints };
+server.listen(PORT, () => {
+  console.info(`Server is listening to ${PORT}`);
+});
