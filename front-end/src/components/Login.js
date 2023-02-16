@@ -20,6 +20,8 @@ const auth = fire.getAuth(app);
 function Login(props) {
   const [loginEmail, setloginEmail] = useState('');
   const [loginPassword, setloginPassword] = useState('');
+  const [loginUsername, setloginUsername] = useState('');
+  
   const [userName, setuserName] = useState('');
 
   function createUser(testemail, testpassword) {
@@ -100,9 +102,18 @@ createUser("kaire@gmail.com", "kareismokes")
               </div>
               <form onSubmit={loginUser} className="form-login">
                 <div className="labels">
-                  <label for="login">Username or Email:</label>
+                  <label for="login">username</label>
                   <input
-                    placeholder="Username or Email"
+                    placeholder="Username"
+                    type="text"
+                    name="login"
+                    value={loginUsername}
+                    onChange={(event)=>setloginUsername(event.target.value)}
+                  />
+                  <br></br>
+                  <label for="login"> Email:</label>
+                  <input
+                    placeholder="Email"
                     type="text"
                     name="login"
                     value={loginEmail}
