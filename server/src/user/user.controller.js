@@ -11,7 +11,7 @@ module.exports = {
         email: 'francis@ford.com',
       }
     */
-    console.log("JSHADKJADHKJASDGJKSDGHJHSAGD")
+    
     await userModel.createUser(req.body);
     res.status(201);
   },
