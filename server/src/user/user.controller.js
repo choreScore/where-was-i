@@ -1,7 +1,7 @@
 const userModel = require('./user.model');
 
 module.exports = {
-  createUser(req, res) {
+  async createUser(req, res) {
     // send data to userModel.createUser
     /*
       {
@@ -11,18 +11,19 @@ module.exports = {
         email: 'francis@ford.com',
       }
     */
-    console.log('create User');
+    await userModel.createUser(req.body)
+    res.status(201)
   },
 
-  updateUser(req, res) {
-    // send data to userModel.updateUser
-    console.log('update User');
-  },
-
-  deleteUser(req, res) {
-    // send data to userModel.deleteUser
-    console.log('delete User');
-  },
+  // updateUser(req, res) {
+  //   // send data to userModel.updateUser
+  //   console.log('update User');
+  // },
+  //
+  // deleteUser(req, res) {
+  //   // send data to userModel.deleteUser
+  //   console.log('delete User');
+  // },
 
   async getUser(req, res) {
     // get data from userModel.getUser
@@ -36,7 +37,6 @@ module.exports = {
         email: jordan@mike.com
       }
     */
-
     const userInfo = await userModel.getUser(req.query.username);
     res.status(201).send(userInfo);
   },

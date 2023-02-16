@@ -9,16 +9,7 @@ const userFixture = require('./testFixture');
 describe('Shows tests', () => {
   before(async () => {});
 
-  afterEach(async () => {
-    // await knex('tv_shows')
-    //   .where('name', showFixture.getShow()[1].showName)
-    //   .returning('name')
-    //   .del()
-    //   .then(() => {
-    //     console.info();
-    //   })
-    //   .catch(console.info);
-  });
+  afterEach(async () => {});
 
   describe('setup', () => {
     it('should connect to database', () => {
