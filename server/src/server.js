@@ -3,7 +3,7 @@ const server = express();
 
 server.use(express.json());
 
-const serverEndpoints = () => {\
+const serverEndpoints = () => {
 
   server.get('/user',userController.getShowList);
   server.post('/user', userController.postNewShow);
