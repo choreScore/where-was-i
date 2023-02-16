@@ -11,8 +11,8 @@ module.exports = {
         email: 'francis@ford.com',
       }
     */
-    
     await userModel.createUser(req.body);
+    // trying to make new commit
     res.status(201);
   },
 
