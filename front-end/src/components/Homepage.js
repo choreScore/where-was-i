@@ -7,7 +7,7 @@ function User({setCurrentView, currentView}){
 
   function showButton(e){
     e.preventDefault();
-    setDisplay('show_ button');
+    setDisplay('show_button');
   };
 
   function hideButton(e){
