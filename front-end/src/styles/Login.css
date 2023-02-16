@@ -2,7 +2,7 @@ body {
     background-color: rgb(58, 58, 58);
 }
 
-.login{
+.login-signup-container{
     display: grid;
     gap: 0px;
     grid-template-columns: repeat(3, 1fr);
@@ -47,7 +47,4 @@ button{
     font-size: 12px;
     margin-left: auto;
     box-shadow:  0px 2px 6px -1px rgba(0,0,0,.13); 
-
-
-
 }

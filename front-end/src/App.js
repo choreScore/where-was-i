@@ -4,6 +4,7 @@ import {useState, useEffect} from 'react';
 import Login from './components/Login';
 import Homepage from './components/Homepage'
 import Show from './components/Show'
+import Navbar from './components/Navbar';
 
 
 
@@ -14,37 +15,20 @@ const [login, setLogin] = useState(false);
 // const [selectedShow, setSelectedShow] = useState([]);
 const [currentView, setCurrentView]  = useState("");
 
-
-// FOR FETCHING ALL SHOW NAMES LINKED TO USERID
-
-
-// async function getAllShowNames(){
-  
-//   await fetch('https://localhost:4000/user/' + userId)
-//     .then((response) => response.json())
-//     .then((showArray) => setAllShows(showArray))
-//     .catch((error) => console.log(error))
-// }
-
-// FOR FETCHING IMAGES
-
-// async function getAllShowImages(){
-
-// }
-
-// async function getPoster(name){
-//   const data = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=22232a34b1256a41ee95dfdb04aa1810&language=en-US&query=${name}&page=1&include_adult=false`)
-//   const dataTreated = await data.json();
-//   return (`https://image.tmdb.org/t/p/original/${dataTreated}`)
-// }
-
-// async function getTheid(name){
-//   const data = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=22232a34b1256a41ee95dfdb04aa1810&language=en-US&query=${name}&page=1&include_adult=false`)
-//   const dataTreated = await data.json();
-//   console.log(data);
-// }
+function homeButtonHandler(){
+  setCurrentView('Homepage')
+}
 
 
+async function getShowImage(name){
+  const data = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=22232a34b1256a41ee95dfdb04aa1810&language=en-US&query=${name}&page=1&include_adult=false`)
+  const id = await data.json();
+  const image = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=22232a34b1256a41ee95dfdb04aa1810&language=en-US&query=${id}&page=1&include_adult=false`)
+  const imageSource = await data.json();
+  return (`https://image.tmdb.org/t/p/original/${imageSource}`)
+}
+
+console.log(getShowImage('The Sopranos'))
 
 
 // async function singleShow(){
@@ -73,6 +57,9 @@ if (login === false){
 if (currentView === "SingleShow"){
   return(
   <div className='single-show'>
+    <Navbar
+      homeButtonHandler={homeButtonHandler}>
+      </Navbar>
     <Show
       currentView={currentView}>
     </Show>
@@ -82,6 +69,9 @@ if (currentView === "SingleShow"){
 if (currentView === 'Homepage'){
   return (
     <div className='Homepage'>
+      <Navbar
+        homeButtonHandler={homeButtonHandler}>
+      </Navbar>
       <Homepage
       login={login}
       setLogin={setLogin}
