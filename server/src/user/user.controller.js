@@ -11,8 +11,8 @@ module.exports = {
         email: 'francis@ford.com',
       }
     */
-    await userModel.createUser(req.body)
-    res.status(201)
+    await userModel.createUser(req.body);
+    res.status(201);
   },
 
   // updateUser(req, res) {
