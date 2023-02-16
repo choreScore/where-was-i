@@ -42,7 +42,7 @@ describe('Shows tests', () => {
 
   describe('getAllShows', () => {
     it('should return an array of shows name', async () => {
-      const shows = await showsModel.getShowList(1);
+      const shows = await showsModel.getShowList(-1);
       expect(shows).to.be.an.instanceof(Array);
       expect(shows[0].showname).to.be.equal('Sopranos');
     });
@@ -52,7 +52,7 @@ describe('Shows tests', () => {
     it('should add a new show to the tv_shows table if it does not exists', async () => {
       const newShow = showFixture.getShow();
       await showsModel.postNewShow(newShow[1]);
-      const shows = await showsModel.getShowList(5);
+      const shows = await showsModel.getShowList(-5);
       expect(shows[0].showname).to.be.equal('Cowboy Bebop');
     });
   });
@@ -61,8 +61,8 @@ describe('Shows tests', () => {
     it('should delete from user_shows_table row matching user/show', async () => {
       const newShow = showFixture.getShow();
       await showsModel.postNewShow(newShow[1]);
-      await showsModel.deleteShow(6, 5);
-      const shows = await showsModel.getShowList(5);
+      await showsModel.deleteShow('cb123', -5);
+      const shows = await showsModel.getShowList(-5);
       expect(shows[0]).to.be.equal(undefined);
     });
   });
@@ -74,7 +74,7 @@ describe('Shows tests', () => {
       newShow.season = 2;
       newShow.episode = 4;
       await showsModel.updateProgress(newShow);
-      const shows = await showsModel.getShowList(5);
+      const shows = await showsModel.getShowList(-5);
       expect(shows[0].season).to.be.equal(2);
       expect(shows[0].episode).to.be.equal(4);
     });

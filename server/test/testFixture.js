@@ -1,29 +1,30 @@
-const USER_ID = 5;
+const USER_ID = -5;
 
 module.exports = {
   getShow() {
     return [
       {
         user_id: USER_ID,
-        show_id: 1,
+        show_id: 'bb123',
         showName: 'Breaking Bad',
         season: 2,
         episode: 10,
       },
       {
         user_id: USER_ID,
-        show_id: 6,
+        show_id: 'cb123',
         showName: 'Cowboy Bebop',
         season: 1,
         episode: 4,
       },
     ];
   },
-  user() {
-   return {
-      auth_token: 'Loremipsumdolorsitamet,quimboreadipisigminimsintcillumsinteturcupidatat.hk',
+  userToken() {
+    return {
+      auth_token:
+        'Loremipsumdolorsitamet,quimboreadipisigminimsintcillumsinteturcupidatat.hk',
       username: 'Coppola',
-      email: 'francis@ford.com'
-    }
-  }
+      email: 'francis@ford.com',
+    };
+  },
 };
