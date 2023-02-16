@@ -66,9 +66,7 @@ function Login(props) {
     var errorMessage = error.message;
   });
   }
-createUser("kaire@gmail.com", "kareismokes")
- let login = props.login;
- const setLogin = props.setLogin;
+
 
  // function handleSubmit(e) {
  //   e.preventDefault();
