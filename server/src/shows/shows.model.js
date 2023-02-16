@@ -37,32 +37,28 @@ module.exports = {
 
   async postNewShow(newShowObject) {
     // CHECK IF SHOW IS ON OUR DATABASE
-    async function checkExists(showName) {
+    async function checkExists(showId) {
       const checkExisting = await knex(TV_SHOWS_TABLE)
-        .select('name')
-        .where('name', showName);
+        .select('show_id')
+        .where('show_id', showId);
       const resultBoolean = checkExisting.length !== 0 ? true : false;
       return resultBoolean;
     }
 
-    const checkShow = await checkExists(newShowObject.showName);
+    const checkShow = await checkExists(newShowObject.show_id);
 
     //IF IS NOT ADD IT
     if (!checkShow) {
-      const allShows = await knex(TV_SHOWS_TABLE).select('*');
       await knex(TV_SHOWS_TABLE).insert({
-        show_id: allShows.length + 1,
+        show_id: newShowObject.show_id,
         name: newShowObject.showName,
       });
     }
-    // ELSE JUST ADD TO USER MOVIE TABLE
-    const movieId = await knex(TV_SHOWS_TABLE)
-      .where('name', newShowObject.showName)
-      .returning('show_id');
 
+    // ELSE JUST ADD TO USER MOVIE TABLE
     return await knex(USER_SHOW_TABLE).insert({
       user_id: newShowObject.user_id,
-      show_id: movieId[0].show_id,
+      show_id: newShowObject.show_id,
       season: newShowObject.season,
       episode: newShowObject.episode,
     });
@@ -85,51 +81,4 @@ module.exports = {
         episode: progressObject.episode,
       });
   },
-  //
-  //   /**
-  //    * @param {number} id - The customer's id.
-  //    * @return {Promise<Object>} A promise that resolves to the customer that matches the id.
-  //    */
-  //   getById(id) {
-  //     return knex
-  //       .select({
-  //         id: 'id',
-  //         lastName: 'last_name',
-  //         firstName: 'first_name',
-  //         email: 'email',
-  //         address: 'address',
-  //         city: 'city',
-  //         region: 'region',
-  //         postalCode: 'postal_code',
-  //         country: 'country',
-  //       })
-  //       .from(USERS_TABLE)
-  //       .where({
-  //         id: id,
-  //       })
-  //       .first();
-  //   },
-  //
-  //   /**
-  //    * @param {Object} customer - The new customer data to add.
-  //    * @return {Promise<number>} A promise that resolves to the id of created customer.
-  //    */
-  //   create(customer) {
-  //     validateRequired(validateProps(customer));
-  //     return knex(USERS_TABLE).insert(customer);
-  //   },
-  //
-  //   /**
-  //    * @param {number} id - The unique id of the existing customer.
-  //    * @param {Object} customer - The customer data to change.
-  //    * @return {Promise<number>} A promise that resolves to the id of the updated customer.
-  //    */
-  //   update(id, customer) {
-  //     validateProps(customer);
-  //     return knex(USERS_TABLE)
-  //       .where({ id: id })
-  //       .update(customer)
-  //       .returning('id')
-  //       .then((result) => result[0].id);
-  //   },
 };
