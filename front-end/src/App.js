@@ -8,7 +8,7 @@ import Show from './components/Show'
 
 
 function App() {
-const [login, setLogin] = useState(false);
+const [login, setLogin] = useState('');
 // const [allShowNames, setAllShowNames] = useState([]);
 // const [allShowImages, setAllShowImages] = useState([]);
 // const [selectedShow, setSelectedShow] = useState([]);
