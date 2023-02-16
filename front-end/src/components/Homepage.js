@@ -28,9 +28,9 @@ function User({setCurrentView, currentView}){
     return (
 
       <div className='homepage'>
-        <div className='header'>
+        {/* <div className='header'>
           <h1>Where Was I?</h1>
-        </div>
+        </div> */}
 
         <div className="homepage-card-container">
         <div 

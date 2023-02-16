@@ -20,24 +20,29 @@ const auth = fire.getAuth(app);
 function Login(props) {
   const [loginEmail, setloginEmail] = useState('');
   const [loginPassword, setloginPassword] = useState('');
-  const [userName, setuserName] = useState('');
+  const [loginUsername, setloginUsername] = useState('');
+  
 
-  function createUser(testemail, testpassword) {
+  function createUser(e) {
+    
+    e.preventDefault();
+    console.log(loginEmail, loginPassword, loginUsername);
+    console.log("JHSDKAHSDKJASHDKJHASDKJHDSJKAHDKJDSH11111");
     fire
-      .createUserWithEmailAndPassword(auth, testemail, testpassword)
+      .createUserWithEmailAndPassword(auth, loginEmail, loginPassword)
       .then(async (userCredential) => {
         var user = userCredential.user;
         console.log(user);
-        const checkstat= await fetch('http://localhost:4000/user',
+        const checkstat = await fetch('http://localhost:4000/user',
         {
             headers: {
               'Accept': 'application/json',
               'Content-Type': 'application/json'
             },
             method: "POST",
-            body: JSON.stringify({auth_token: user.uid, username: "kaire", email:user.email})
+            body: JSON.stringify({auth_token: user.uid, username: loginUsername, email:user.email})
         })
-        console.log(checkstat);
+    
 
       })
       .catch((error) => {
@@ -49,11 +54,12 @@ function Login(props) {
   
   async function loginUser(e){
   e.preventDefault();
-   let email = await fetch(`http://localhost:4000/user?username=${userName}`)
+   let email = await fetch(`http://localhost:4000/user?username=${loginUsername}`)
 
     fire.signInWithEmailAndPassword(auth,email.email, loginPassword)
   .then((userCredential) => {
     var user = userCredential.user.uid;
+    console.log(user);
     props.setLogin(user);
     props.setCurrentView("Homepage");
   })
@@ -62,7 +68,6 @@ function Login(props) {
     var errorMessage = error.message;
   });
   }
-createUser("kaire@gmail.com", "kareismokes")
  let login = props.login;
  const setLogin = props.setLogin;
 
@@ -98,11 +103,20 @@ createUser("kaire@gmail.com", "kareismokes")
                 <h2>Where Was I?</h2>
                 <h3>Welcome back!</h3>
               </div>
-              <form onSubmit={loginUser} className="form-login">
+              <form onSubmit={createUser} className="form-login">
                 <div className="labels">
-                  <label for="login">Username or Email:</label>
+                  <label for="login">username</label>
                   <input
-                    placeholder="Username or Email"
+                    placeholder="Username"
+                    type="text"
+                    name="login"
+                    value={loginUsername}
+                    onChange={(event)=>setloginUsername(event.target.value)}
+                  />
+                  <br></br>
+                  <label for="login"> Email:</label>
+                  <input
+                    placeholder="Email"
                     type="text"
                     name="login"
                     value={loginEmail}
@@ -116,7 +130,30 @@ createUser("kaire@gmail.com", "kareismokes")
                     name="password"
                     value={loginPassword}
                     onChange={(event)=>setloginPassword(event.target.value)}
-
+                  />
+                </div>
+                <div className="login-button">
+                  <button type="submit">signup</button>
+                </div>
+              </form>
+              <form onSubmit={loginUser} className="form-login">
+                <div className="labels">
+                  <label for="login">username</label>
+                  <input
+                    placeholder="Username"
+                    type="text"
+                    name="login"
+                    value={loginUsername}
+                    onChange={(event)=>setloginUsername(event.target.value)}
+                  />
+                  <br></br>
+                  <label for="password">Password:</label>
+                  <input
+                    placeholder="Password"
+                    type="password"
+                    name="password"
+                    value={loginPassword}
+                    onChange={(event)=>setloginPassword(event.target.value)}
                   />
                 </div>
                 <div className="login-button">
