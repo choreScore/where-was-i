@@ -1,9 +1,4 @@
 import {useState, useEffect} from 'react';
-import Dropdown from 'react-dropdown';
-import { AiFillHome } from 'react-icons/ai';
-import { GrAddCircle } from 'react-icons/gr';
-import { RiDeleteBin6Fill, RiLogoutBoxFill } from 'react-icons/ri';
-import { MdAccountCircle } from 'react-icons/md';
 
 import '../styles/Navbar.css'
 

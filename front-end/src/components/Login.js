@@ -58,12 +58,14 @@ function Login(props) {
     var user = userCredential.user.uid;
     props.setLogin(user);
     props.setCurrentView("Homepage");
+
   })
   .catch((error) => {
     var errorCode = error.code;
     var errorMessage = error.message;
   });
   }
+
 createUser("kaire@gmail.com", "kareismokes")
  let login = props.login;
  const setLogin = props.setLogin;
@@ -91,7 +93,7 @@ createUser("kaire@gmail.com", "kareismokes")
           <div className="login">
             <div className="image-container">
               <img
-                src={require("C:/Users/Emman/Desktop/where-was-i/front-end/src/test-image/background.png")}
+                src={require("/Users/rebeccaweeks/Desktop/Immersive/Week 5/where-was-i/front-end/src/test-image/background.png")}
                 alt=""
               />
             </div>
