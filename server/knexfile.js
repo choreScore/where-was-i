@@ -1,7 +1,7 @@
-require('dotenv').config({
-  path: './.env.local',
-});
-
+//require('dotenv').config({
+//  path: './.env.local',
+//});
+//
 module.exports = {
   client: 'pg',
   connection: process.env.DB_URL || {
