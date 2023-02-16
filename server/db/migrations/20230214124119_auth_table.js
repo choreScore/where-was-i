@@ -11,8 +11,6 @@ exports.up = function (knex) {
       .references('user_id')
       .inTable('users')
       .onDelete('cascade');
-    table.bigint('expire_time').notNullable();
-    table.bigint('last_login').notNullable();
   });
 };
 
