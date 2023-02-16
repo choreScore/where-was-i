@@ -18,8 +18,17 @@ function Login(props){
 
     if (login === false){
     return (
-      <div className='login'>
-        <div className='image-container'>
+      <div className='login-signup-container'>
+
+        <div className='slider'></div>
+        <div className='slider-button'>
+          <button className='slider-login'>Login</button>
+          <button className='slider-signup'>Signup</button>
+        </div>
+
+        <div className='form-section'>
+          <div className='login'>
+          <div className='image-container'>
           <img src={require('/Users/rebeccaweeks/Desktop/Immersive/Week 5/where-was-i/front-end/src/test-image/background.png')} alt=""/>
         </div>
         <div className='login-container'>
@@ -45,10 +54,11 @@ function Login(props){
               <button type='submit'>Login</button>
           </div>
         </form>
-
-
-
         </div>
+          </div>
+        </div>
+
+        
        
       </div>
     )
