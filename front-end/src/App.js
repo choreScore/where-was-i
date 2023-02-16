@@ -20,36 +20,15 @@ function homeButtonHandler(){
 }
 
 
-// FOR FETCHING ALL SHOW NAMES LINKED TO USERID
+async function getShowImage(name){
+  const data = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=22232a34b1256a41ee95dfdb04aa1810&language=en-US&query=${name}&page=1&include_adult=false`)
+  const id = await data.json();
+  const image = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=22232a34b1256a41ee95dfdb04aa1810&language=en-US&query=${id}&page=1&include_adult=false`)
+  const imageSource = await data.json();
+  return (`https://image.tmdb.org/t/p/original/${imageSource}`)
+}
 
-
-// async function getAllShowNames(){
-  
-//   await fetch('https://localhost:4000/user/' + userId)
-//     .then((response) => response.json())
-//     .then((showArray) => setAllShows(showArray))
-//     .catch((error) => console.log(error))
-// }
-
-// FOR FETCHING IMAGES
-
-// async function getAllShowImages(){
-
-// }
-
-// async function getPoster(name){
-//   const data = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=22232a34b1256a41ee95dfdb04aa1810&language=en-US&query=${name}&page=1&include_adult=false`)
-//   const dataTreated = await data.json();
-//   return (`https://image.tmdb.org/t/p/original/${dataTreated}`)
-// }
-
-// async function getTheid(name){
-//   const data = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=22232a34b1256a41ee95dfdb04aa1810&language=en-US&query=${name}&page=1&include_adult=false`)
-//   const dataTreated = await data.json();
-//   console.log(data);
-// }
-
-
+console.log(getShowImage('The Sopranos'))
 
 
 // async function singleShow(){

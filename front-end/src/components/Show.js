@@ -68,12 +68,12 @@ function Show(props){
                         </div>
                         <div className='update-progress-buttons'>
                             <button onClick={handleOpenProgressPopUp}>Update Progress</button>
-                            <button onClick={handleOpenDeletePopUp}>Delete Show</button> */}
+                            <button onClick={handleOpenDeletePopUp}>Delete Show</button> 
 
                             {progressPopUpOpen && (
                                 <div>
                                     <div className='popup-content'>
-                                        <p>Popup content</p>
+                                        <p>Save New Progress?</p>
                                         </div>
                                         <button onClick={submitProgress}>Submit</button>
                                         <button onClick={handelCloseProgressPopUp}>Cancel</button>
@@ -84,7 +84,7 @@ function Show(props){
                                 <div class='popup'>
                                     <div className='popup-content'>
                                         <span class='close-button'>&times;</span>
-                                        <p>Popup content</p>
+                                        <p>Delete Show?</p>
                                         </div>
                                         <button onClick={submitDelete}>Delete</button>
                                         <button onClick={handleCloseDeletePopUp}>Cancel</button>
