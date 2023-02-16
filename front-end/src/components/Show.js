@@ -51,9 +51,7 @@ function Show(props) {
     <div className="single-show">
       <div className="single-show-container">
         <div className="show-image-container">
-          <img
-            src={require('C:/Users/Emman/Desktop/where-was-i/front-end/src/test-image/background.png')}
-          />
+          <img src={require('../test-image/sopranos.jpg')} />
         </div>
 
         <div className="show-text-container">

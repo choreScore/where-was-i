@@ -92,10 +92,7 @@ function Login(props) {
         <div className="form-section">
           <div className="login">
             <div className="image-container">
-              <img
-                src={require('/Users/rebeccaweeks/Desktop/Immersive/Week 5/where-was-i/front-end/src/test-image/background.png')}
-                alt=""
-              />
+              <img src={require('../test-image/background.png')} alt="" />
             </div>
             <div className="login-container">
               <div className="login-title">
@@ -168,3 +165,5 @@ function Login(props) {
 }
 
 export default Login;
+
+export default Login
