@@ -1,6 +1,5 @@
 import {useState, useEffect} from 'react';
 
-
 import '../styles/Navbar.css'
 
 function Navbar({homeButtonHandler}){
