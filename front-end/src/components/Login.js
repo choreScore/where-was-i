@@ -59,7 +59,7 @@ function Login(props) {
     var user = userCredential.user.uid;
     props.setLogin(user);
     props.setCurrentView("Homepage");
-    setUserInfo({username: data.username, email:data.email, user_id:data.user_id})
+    props.setUserInfo({username: data.username, email:data.email, user_id:data.user_id})
   })
   .catch((error) => {
     var errorCode = error.code;
