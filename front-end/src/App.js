@@ -4,6 +4,7 @@ import {useState, useEffect} from 'react';
 import Login from './components/Login';
 import Homepage from './components/Homepage'
 import Show from './components/Show'
+import Navbar from './components/Navbar';
 
 
 
@@ -13,6 +14,10 @@ const [login, setLogin] = useState(false);
 // const [allShowImages, setAllShowImages] = useState([]);
 // const [selectedShow, setSelectedShow] = useState([]);
 const [currentView, setCurrentView]  = useState("");
+
+function homeButtonHandler(){
+  setCurrentView('Homepage')
+}
 
 
 // FOR FETCHING ALL SHOW NAMES LINKED TO USERID
@@ -73,6 +78,9 @@ if (login === false){
 if (currentView === "SingleShow"){
   return(
   <div className='single-show'>
+    <Navbar
+      homeButtonHandler={homeButtonHandler}>
+      </Navbar>
     <Show
       currentView={currentView}>
     </Show>
@@ -82,6 +90,9 @@ if (currentView === "SingleShow"){
 if (currentView === 'Homepage'){
   return (
     <div className='Homepage'>
+      <Navbar
+        homeButtonHandler={homeButtonHandler}>
+      </Navbar>
       <Homepage
       login={login}
       setLogin={setLogin}

@@ -1,0 +1,55 @@
+.header{
+    max-width: 100%;
+    background-color: rgb(255, 166, 0);
+    color: black;
+    margin-top: -1rem;
+    padding: 1rem
+}
+
+.single-show-container{
+    display: grid;
+    gap: 0px;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 10em;
+    position: relative;
+}
+
+.show-image-container{
+    grid-column: 1;
+    border: solid rgb(255, 166, 0);
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+}
+
+.show-image-container img{
+    width: 100%; 
+    height: 100%;
+    object-fit: cover;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+}
+
+.show-text-container {
+    grid-column: 2 / span 2;
+    border: solid rgb(255, 166, 0);
+    background-color: rgb(224, 224, 224);
+    padding: 1rem;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
+.popup {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    /* width: 20rem;
+    height: 10rem; */
+    background-color: blueviolet;
+    transform: translate(-50% -50%);
+    transform: scale(1.0);
+    transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+    padding: 1rem 1.5rem;
+    width: 24rem;
+    border-radius: 0.5rem;
+
+}
