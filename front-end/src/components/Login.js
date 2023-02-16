@@ -22,22 +22,22 @@ function Login(props) {
   const [loginPassword, setloginPassword] = useState('');
   const [userName, setuserName] = useState('');
 
-  function createUser() {
+  function createUser(testemail, testpassword) {
     fire
-      .createUserWithEmailAndPassword(auth, loginEmail, loginPassword)
-      .then((userCredential) => {
+      .createUserWithEmailAndPassword(auth, testemail, testpassword)
+      .then(async (userCredential) => {
         var user = userCredential.user;
         console.log(user);
-        fetch('http://localhost:4000/user',
+        const checkstat= await fetch('http://localhost:4000/user',
         {
             headers: {
               'Accept': 'application/json',
               'Content-Type': 'application/json'
             },
             method: "POST",
-            body: {auth_token: user.uid, username: userName, email:user.email}
+            body: JSON.stringify({auth_token: user.uid, username: "kaire", email:user.email})
         })
-
+        console.log(checkstat);
 
       })
       .catch((error) => {
@@ -62,9 +62,9 @@ function Login(props) {
     var errorMessage = error.message;
   });
   }
-
-//  let login = props.login;
-//  const setLogin = props.setLogin;
+createUser("kaire@gmail.com", "kareismokes")
+ let login = props.login;
+ const setLogin = props.setLogin;
 
  // function handleSubmit(e) {
  //   e.preventDefault();

@@ -22,6 +22,7 @@ module.exports = {
   },
 
   async createUser(newUserObject) {
+    console.log(newUserObject);
     await knex(USERS_TABLE).insert({
       username: newUserObject.username,
       email: newUserObject.email,
