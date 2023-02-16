@@ -4,8 +4,8 @@
  */
 exports.up = function (knex) {
   return knex.schema.createTable('tv_shows', function (table) {
-    table.integer('show_id').primary();
-    table.string('name', 64).notNullable();
+    table.string('show_id', 32).primary();
+    table.string('name', 32).notNullable();
   });
 };
 

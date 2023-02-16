@@ -1,6 +1,6 @@
 const express = require('express');
 const server = express();
-const userController = require('./users/users.controller');
+const userController = require('./users/user.controller');
 const showsController = require('./users/shows.controller');
 
 server.use(express.json());
@@ -17,12 +17,14 @@ const serverEndpoints = () => {
   server.delete('/user/shows', showsController.deleteShow);
 
   //USER REQUESTS
+  // GET USER
+  server.get('/user', userController.getUser);
   //USER AUTHENTICATION && || ADD NEW USER IF NO authToken
-  server.post('/user', userController.authenticateUser);
+  server.post('/user', userController.createUser);
   //REMOVE USER ACCOUNT
   server.delete('/user', userController.deleteUser);
   //UPDATE USER INFO // PASSWORD RESET BUTTON
-  server.delete('/user', userController.deleteUser);
+  server.update('/user', userController.updateUser);
 
   return server;
 };

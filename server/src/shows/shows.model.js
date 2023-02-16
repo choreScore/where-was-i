@@ -54,7 +54,6 @@ module.exports = {
         name: newShowObject.showName,
       });
     }
-
     // ELSE JUST ADD TO USER MOVIE TABLE
     return await knex(USER_SHOW_TABLE).insert({
       user_id: newShowObject.user_id,

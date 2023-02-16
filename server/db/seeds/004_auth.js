@@ -9,37 +9,27 @@ exports.seed = async function (knex) {
     {
       auth_token:
         'Loremipsumdolorsitametminimlaboreadipisicingminimsintcillumsintconsecteturcupidatat.hk',
-      user_id: 1,
-      last_login: 1676475649045,
-      expire_time: 1676475650845,
+      user_id: -1,
     },
     {
       auth_token:
         'Loremipsumdolorsitamet,quimboreadipisicingminimsintcillumsintconsecteturcupidatat.hk',
-      user_id: 2,
-      last_login: 1676475649045,
-      expire_time: 1676475650845,
+      user_id: -2,
     },
     {
       auth_token:
         'Loremidolorsitamet,quiminimlaboreadipisicingminimsintcillumsintconsecteturcupidatat.hk',
-      user_id: 3,
-      last_login: 1676475649045,
-      expire_time: 1676475650845,
+      user_id: -3,
     },
     {
       auth_token:
         'Loremirsitamet,quiminimlaboreadipisicingminimsintcillumsintconsecteturcupidatat.hk',
-      user_id: 4,
-      last_login: 1676475649045,
-      expire_time: 1676475650845,
+      user_id: -4,
     },
     {
       auth_token:
         'Loremipsumdolorsitamet,quiminimlaboreadiinimsintcillumsintconsecteturcupidatat.hk',
-      user_id: 5,
-      last_login: 1676475649045,
-      expire_time: 1676475650845,
+      user_id: -5,
     },
   ]);
 };

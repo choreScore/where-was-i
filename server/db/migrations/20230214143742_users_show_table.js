@@ -11,7 +11,7 @@ exports.up = function (knex) {
       .inTable('users')
       .onDelete('cascade');
     table
-      .integer('show_id')
+      .string('show_id', 32)
       .notNullable()
       .references('show_id')
       .inTable('tv_shows')
