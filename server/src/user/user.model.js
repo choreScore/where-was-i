@@ -17,12 +17,12 @@ module.exports = {
       .select({
         username: 'users.username',
         email: 'users.email',
+        user_id: 'users.user_id'
       })
       .where('username', username);
   },
 
   async createUser(newUserObject) {
-    console.log(newUserObject);
     await knex(USERS_TABLE).insert({
       username: newUserObject.username,
       email: newUserObject.email,
