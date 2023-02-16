@@ -18,12 +18,6 @@ const [currentView, setCurrentView]  = useState("");
 function homeButtonHandler(){
   setCurrentView('Homepage')
 }
-<<<<<<< HEAD
-
-
-// FOR FETCHING ALL SHOW NAMES LINKED TO USERID
-=======
->>>>>>> becky
 
 
 async function getShowImage(name){

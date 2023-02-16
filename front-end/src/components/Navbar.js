@@ -15,11 +15,7 @@ function Navbar({homeButtonHandler}){
 
    async function handlerAddShow(){
 
-<<<<<<< HEAD
-=======
 
-
->>>>>>> becky
    }
 
    async function handlerDeleteShow(){
