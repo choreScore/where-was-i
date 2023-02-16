@@ -1,82 +1,58 @@
 import {useState, useEffect} from 'react';
 import {BrowserRouter, Routes, Route, useNavigate} from 'react-router-dom';
-import User from './User';
+import Homepage from './Homepage';
+import '../styles/Login.css'
 
 
-function Login(){
-  const navigate = useNavigate();
+//getUserId from Firebase and pass to App
 
-  const exampleData = [
-    {
-      userId: 1,
-      username: 'tarantino',
-      showname: 'Sopranos',
-      show_id: 1
-    },
-    {
-      userId: 1,
-      username: 'tarantino',
-      showname: 'Breaking Bad',
-      show_id: 2
-    },
-    {
-      userId: 1,
-      username: 'tarantino',
-      showname: 'The Offer',
-      show_id: 3
-    },
-    { userId: 1, username: 'tarantino', showname: 'Fargo', show_id: 4 },
-    {
-      userId: 1,
-      username: 'tarantino',
-      showname: 'True Detective',
-      show_id: 5
-    }
-  ];
-
-  // async function getAllShows(){
-  //  await fetch('http://localhost:3000/user') //URL
-  //     .then((response) => response.json())
-  //     .then((result) => setAllShows(result))
-  //     .catch((error) => console.log(error))
+function Login(props){
+  let login = props.login
+  const setLogin = props.setLogin;
 
     function handleSubmit(e){
-      e.preventdefault();
-      // getAllShows();
-      navigate('/user');
+      e.preventDefault();
+      setLogin(true);
+      props.setCurrentView('Homepage')
     }
-    return (
-    <div className='login'>
 
-            <div className="login-header">
-            <h1>Where Was I?</h1>
+    if (login === false){
+    return (
+      <div className='login'>
+        <div className='image-container'>
+          <img src={require('/Users/rebeccaweeks/Desktop/Immersive/Week 5/where-was-i/front-end/src/test-image/background.png')} alt=""/>
+        </div>
+        <div className='login-container'>
+          <div className='login-title'>
+            <h2>Where Was I?</h2>
+            <h3>Welcome back!</h3>
+          </div>
+          <form onSubmit={handleSubmit} className="form-login">
+          <div className='labels'>
+          <label for='login'>Username or Email:</label>
+            <input
+              placeholder='Username or Email'
+              type='text'
+              name='login' />
+          <br></br>
+          <label for='password'>Password:</label>
+            <input
+              placeholder='Password'
+              type='password'
+              name='password' />
             </div>
-            <div className = "card">
-              <h3>Login</h3>
-              <form onSubmit={handleSubmit}>
-                <label>
-                  Email or username
-                <input
-                  type='text'
-                  placeholder='Enter username or email' />
-                </label>
-                <br></br>
-    
-                <label>
-                  Password
-                <input 
-                  type='password'
-                  placeholder='Enter password' />
-                </label>
-                <br></br>
-    
-                <button type='submit'>Login
-                  </button>
-              </form>       
-            </div>
-            <User exampleData={exampleData} />
-    </div>
+            <div className='login-button'>
+              <button type='submit'>Login</button>
+          </div>
+        </form>
+
+
+
+        </div>
+       
+      </div>
     )
+  }
 }
 
 export default Login
