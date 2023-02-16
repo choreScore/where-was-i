@@ -92,7 +92,7 @@ function Login(props) {
           <div className="login">
             <div className="image-container">
               <img
-                src={require("C:/Users/Emman/Desktop/where-was-i/front-end/src/test-image/background.png")}
+                src={require("/Users/rebeccaweeks/Desktop/Immersive/Week 5/where-was-i/front-end/src/test-image/background.png")}
                 alt=""
               />
             </div>
