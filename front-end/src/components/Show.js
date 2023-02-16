@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react';
 import {BrowserRouter, Routes, Route, useNavigate} from 'react-router-dom';
 
-function Show({exampleData}){
+function Show(props){
 
 
     //   const [allShows, setAllShows] = useState([]); 
@@ -18,15 +18,7 @@ function Show({exampleData}){
     
         return (
               <header className="App-header">
-                <div className="header">
-                <h1>Where Was I?</h1>
-                </div>
-              <div className='cards'>
-                {/* <img class='tv-img' alt='' src=''> */}
-                <div class='card-text'>
-                  <h3>{getAllShows(exampleData)}</h3>
-                </div>
-              </div>
+                <h1>I'm in Show</h1>
               </header>
     
                 

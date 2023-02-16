@@ -1,36 +1,99 @@
 import logo from './logo.svg';
 import './App.css';
 import {useState, useEffect} from 'react';
-import {BrowserRouter, Routes, Route, useNavigate} from 'react-router-dom';
 import Login from './components/Login';
-import User from './components/User';
-import Show from './components/Show';
+import Homepage from './components/Homepage'
+import Show from './components/Show'
 
 
 
 function App() {
 const [login, setLogin] = useState(false);
-const navigate = useNavigate();
+// const [allShowNames, setAllShowNames] = useState([]);
+// const [allShowImages, setAllShowImages] = useState([]);
+// const [selectedShow, setSelectedShow] = useState([]);
+const [currentView, setCurrentView]  = useState("");
+
+
+// FOR FETCHING ALL SHOW NAMES LINKED TO USERID
+
+
+// async function getAllShowNames(){
+  
+//   await fetch('https://localhost:4000/user/' + userId)
+//     .then((response) => response.json())
+//     .then((showArray) => setAllShows(showArray))
+//     .catch((error) => console.log(error))
+// }
+
+// FOR FETCHING IMAGES
+
+// async function getAllShowImages(){
+
+// }
+
+// async function getPoster(name){
+//   const data = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=22232a34b1256a41ee95dfdb04aa1810&language=en-US&query=${name}&page=1&include_adult=false`)
+//   const dataTreated = await data.json();
+//   return (`https://image.tmdb.org/t/p/original/${dataTreated}`)
+// }
+
+// async function getTheid(name){
+//   const data = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=22232a34b1256a41ee95dfdb04aa1810&language=en-US&query=${name}&page=1&include_adult=false`)
+//   const dataTreated = await data.json();
+//   console.log(data);
+// }
+
+
+
+
+// async function singleShow(){
+  //combine text and image
+  //setSelectedShow()
+  //setCurrentView("SingleShow")
+//}
+
 
 
 
 
 if (login === false){
-  navigate('/login')
+  return (
+    <div className='Login'>
+      <Login
+        login={login}
+        setLogin={setLogin}></Login>
+    </div>
+  )
+}
+
+else if (currentView === "SingleShow"){
+  <div className='single-show'>
+    <Show 
+    selectedShow={selectedShow}/>
+  </div>
+}
+
+else if (login === true){
+  return (
+    <div className='Homepage'>
+      <Homepage
+      login={login}
+      setLogin={setLogin}
+      // allShows={allShows}
+      // setAllShows={setAllShows}
+      // showArray={showArray}
+      // singleShow={singleShow}
+
+      >
+      </Homepage>
+    </div>
+  )
 }
 
 
-  return (
-    <div className = 'app'>
-      <Routes>
-        <Route path='/login' element={<Login login={login}/>}>
-        <Route path='user' element={<User />}>
-          <Route path='show' element={<Show />}/>
-          </Route>
-          </Route>
-          </Routes>
-    </div>
-  )
+
+
 }
 
 export default App;
