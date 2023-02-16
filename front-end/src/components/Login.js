@@ -80,7 +80,7 @@ function Login(props) {
   //   props.setCurrentView("Homepage");
   // }
 
-  if (login === false) {
+  if (props.login === false) {
     return (
       <div className="login-signup-container">
         <div className="slider"></div>
