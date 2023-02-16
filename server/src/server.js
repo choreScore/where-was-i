@@ -2,7 +2,9 @@ const express = require('express');
 const server = express();
 const userController = require('./user/user.controller');
 const showsController = require('./shows/shows.controller');
+
 const cors = require("cors");
+
 
 server.use(express.json());
 server.use(cors());
@@ -24,9 +26,15 @@ const serverEndpoints = () => {
   //USER AUTHENTICATION && || ADD NEW USER IF NO authToken
   server.post('/user', userController.createUser);
   //REMOVE USER ACCOUNT
+
   //server.delete('/user', userController.deleteUser);
   //UPDATE USER INFO // PASSWORD RESET BUTTON
   //server.update('/user', userController.updateUser);
+
+  // server.delete('/user', userController.deleteUser);
+  //UPDATE USER INFO // PASSWORD RESET BUTTON
+  // server.update('/user', userController.updateUser);
+
 
   return server;
 };

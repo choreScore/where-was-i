@@ -5,7 +5,7 @@ body {
 
 .header{
     max-width: 100%;
-    background-color: rgb(255, 166, 0);
+    background-color: rgba(255, 166, 0, 0.789);
     color: black;
     margin-top: -1rem;
     padding: 1rem
@@ -22,7 +22,7 @@ body {
 }
 
 .cards {
-    background-color: rgb(255, 166, 0);
+    background-color: rgba(255, 166, 0, 0.789);
     color: rgb(58, 58, 58);
     padding: 1rem;
     height: auto;
@@ -42,9 +42,14 @@ body {
 }
 
 .cards button{
-   width: fit-content;
-   background-color: rgb(195, 195, 195);
-   border-radius: 25px;
+    width: auto;
+    border-radius: 25px;
+    text-align: center;
+    padding: 15px 40px;
+    background-color: rgba(255, 255, 255, 0.789);
+    font-size: 12px;
+    margin-left: auto;
+    box-shadow:  0px 2px 6px -1px rgba(0,0,0,.13); 
 }
 
 .cards:hover {
