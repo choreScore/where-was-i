@@ -71,11 +71,12 @@ if (login === false){
 }
 
 if (currentView === "SingleShow"){
+  return(
   <div className='single-show'>
     <Show
       currentView={currentView}>
     </Show>
-  </div>
+  </div>)
 }
 
 if (currentView === 'Homepage'){
