@@ -25,11 +25,11 @@
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "knex": "^2.4.2",
+    "dotenv": "^16.0.3",
     "pg": "^8.9.0"
   },
   "devDependencies": {
     "chai": "^4.3.7",
-    "dotenv": "^16.0.3",
     "eslint": "^8.34.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-config-problems": "^7.0.1",
