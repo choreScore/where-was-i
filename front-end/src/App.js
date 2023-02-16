@@ -62,19 +62,23 @@ if (login === false){
     <div className='Login'>
       <Login
         login={login}
-        setLogin={setLogin}></Login>
+        setLogin={setLogin}
+        setCurrentView={setCurrentView}
+
+        ></Login>
     </div>
   )
 }
 
-else if (currentView === "SingleShow"){
+if (currentView === "SingleShow"){
   <div className='single-show'>
-    <Show 
-    selectedShow={selectedShow}/>
+    <Show
+      currentView={currentView}>
+    </Show>
   </div>
 }
 
-else if (login === true){
+if (currentView === 'Homepage'){
   return (
     <div className='Homepage'>
       <Homepage
@@ -84,6 +88,8 @@ else if (login === true){
       // setAllShows={setAllShows}
       // showArray={showArray}
       // singleShow={singleShow}
+      setCurrentView={setCurrentView}
+      currentView={currentView}
 
       >
       </Homepage>

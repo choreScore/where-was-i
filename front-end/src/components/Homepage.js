@@ -1,19 +1,30 @@
 import {useState, useEffect} from 'react';
 import '../styles/Homepage.css'
 
-function User(props){
+function User({setCurrentView, currentView}){
   const [display, setDisplay] = useState('hide_button');
+
 
   function showButton(e){
     e.preventDefault();
-    setDisplay('show_button');
+    setDisplay('show_ button');
   };
 
   function hideButton(e){
     e.preventDefault();
     setDisplay('hide_button');
   };
+
+  function singleView(e){
+    console.log('here')
+    e.preventDefault();
+    console.log(setCurrentView)
+    setCurrentView('SingleShow');
+    console.log(currentView);
+
+  }
   
+  if (currentView === 'Homepage'){
     return (
 
       <div className='homepage'>
@@ -58,7 +69,8 @@ function User(props){
                 <h3>TV Show 3</h3>
             </div>
             <div className={display}>
-                <button id="progress">View Progress</button>
+                <button id="progress"
+                onClick={singleView}>View Progress</button>
             </div>
         </div>
 
@@ -93,6 +105,7 @@ function User(props){
       </div>
             
     )
+}
 }
 
 

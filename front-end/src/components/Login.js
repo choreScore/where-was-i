@@ -7,12 +7,13 @@ import '../styles/Login.css'
 //getUserId from Firebase and pass to App
 
 function Login(props){
-  let login = props.login;
+  let login = props.login
   const setLogin = props.setLogin;
 
     function handleSubmit(e){
       e.preventDefault();
       setLogin(true);
+      props.setCurrentView('Homepage')
     }
 
     if (login === false){
@@ -26,8 +27,8 @@ function Login(props){
             <h2>Where Was I?</h2>
             <h3>Welcome back!</h3>
           </div>
-          <form onSubmit={handleSubmit} class="form-login">
-          <div class='labels'>
+          <form onSubmit={handleSubmit} className="form-login">
+          <div className='labels'>
           <label for='login'>Username or Email:</label>
             <input
               placeholder='Username or Email'
