@@ -30,9 +30,9 @@ async function getShowID(name){
         return movie.id;
       }
     }
-  }2
+  }
 }
-1
+
 async function getShowImage(name){
   let id = await getShowID(name);3
   let posterAdd = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=22232a34b1256a41ee95dfdb04aa1810&language=en-US&query=${id}&page=1&include_adult=false`)
@@ -40,20 +40,7 @@ async function getShowImage(name){
   return (`https://image.tmdb.org/t/p/original/${posterAddTreated}`);
 }
 
-  // .then((id) => fetch(`https://api.themoviedb.org/3/search/movie?api_key=22232a34b1256a41ee95dfdb04aa1810&language=en-US&query=${id}&page=1&include_adult=false`))
-  // .then((image) => image.json())
-  // .then((imageSource) => `https://image.tmdb.org/t/p/original/${imageSource}`)
-  //.catch((error) => console.log(error))
 
-  // const data = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=22232a34b1256a41ee95dfdb04aa1810&language=en-US&query=${name}&page=1&include_adult=false`)
-  // const id = await data.json();
-  // const image = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=22232a34b1256a41ee95dfdb04aa1810&language=en-US&query=${id}&page=1&include_adult=false`)
-  // const imageSource = await data.json();
-  // return (`https://image.tmdb.org/t/p/original/${imageSource}`)
-}
-
-// console.log('here ---->', getShowImage("Jack Reacher"))
-getShowID("Jack Reacher")
 
 
 // async function singleShow(){
