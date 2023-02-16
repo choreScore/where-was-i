@@ -14,21 +14,43 @@ const [login, setLogin] = useState(false);
 // const [allShowImages, setAllShowImages] = useState([]);
 // const [selectedShow, setSelectedShow] = useState([]);
 const [currentView, setCurrentView]  = useState("");
+const [userInfo, setUserInfo] = useState({});
 
 function homeButtonHandler(){
   setCurrentView('Homepage')
 }
 
 
-async function getShowImage(name){
-  const data = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=22232a34b1256a41ee95dfdb04aa1810&language=en-US&query=${name}&page=1&include_adult=false`)
-  const id = await data.json();
-  const image = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=22232a34b1256a41ee95dfdb04aa1810&language=en-US&query=${id}&page=1&include_adult=false`)
-  const imageSource = await data.json();
-  return (`https://image.tmdb.org/t/p/original/${imageSource}`)
+async function getShowID(name){
+  let array = fetch(`https://api.themoviedb.org/3/search/movie?api_key=22232a34b1256a41ee95dfdb04aa1810&language=en-US&query=${name}&page=1&include_adult=false`)
+  .then((data) => data.json())
+  .then((object) => object.results)
+  .then((result) => (result))
+  .catch((error) => console.log(error))
+
+  console.log(array)
 }
 
-console.log(getShowImage('The Sopranos'))
+async function getShowImage(name){
+  let array = fetch(`https://api.themoviedb.org/3/search/movie?api_key=22232a34b1256a41ee95dfdb04aa1810&language=en-US&query=${name}&page=1&include_adult=false`)
+  .then((data) => data.json())
+  .then((data) => data.results)
+  .then((result) => result)
+
+  // .then((id) => fetch(`https://api.themoviedb.org/3/search/movie?api_key=22232a34b1256a41ee95dfdb04aa1810&language=en-US&query=${id}&page=1&include_adult=false`))
+  // .then((image) => image.json())
+  // .then((imageSource) => `https://image.tmdb.org/t/p/original/${imageSource}`)
+  .catch((error) => console.log(error))
+
+  // const data = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=22232a34b1256a41ee95dfdb04aa1810&language=en-US&query=${name}&page=1&include_adult=false`)
+  // const id = await data.json();
+  // const image = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=22232a34b1256a41ee95dfdb04aa1810&language=en-US&query=${id}&page=1&include_adult=false`)
+  // const imageSource = await data.json();
+  // return (`https://image.tmdb.org/t/p/original/${imageSource}`)
+}
+
+// console.log('here ---->', getShowImage("Jack Reacher"))
+getShowID("Jack Reacher")
 
 
 // async function singleShow(){
@@ -48,7 +70,7 @@ if (login === false){
         login={login}
         setLogin={setLogin}
         setCurrentView={setCurrentView}
-
+        setUserInfo={setUserInfo}
         ></Login>
     </div>
   )
@@ -81,7 +103,8 @@ if (currentView === 'Homepage'){
       // singleShow={singleShow}
       setCurrentView={setCurrentView}
       currentView={currentView}
-
+      userInfo={userInfo}
+      setUserInfo={setUserInfo}
       >
       </Homepage>
     </div>
