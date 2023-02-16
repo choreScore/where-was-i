@@ -26,8 +26,6 @@ function Login(props) {
   function createUser(e) {
     
     e.preventDefault();
-    console.log(loginEmail, loginPassword, loginUsername);
-    console.log("JHSDKAHSDKJASHDKJHASDKJHDSJKAHDKJDSH11111");
     fire
       .createUserWithEmailAndPassword(auth, loginEmail, loginPassword)
       .then(async (userCredential) => {
@@ -55,21 +53,20 @@ function Login(props) {
   async function loginUser(e){
   e.preventDefault();
    let email = await fetch(`http://localhost:4000/user?username=${loginUsername}`)
-
-    fire.signInWithEmailAndPassword(auth,email.email, loginPassword)
+   let data =await email.json();
+    fire.signInWithEmailAndPassword(auth,data[0].email, loginPassword)
   .then((userCredential) => {
     var user = userCredential.user.uid;
-    console.log(user);
     props.setLogin(user);
     props.setCurrentView("Homepage");
+    props.setUserInfo({username: data.username, email:data.email, user_id:data.user_id})
   })
   .catch((error) => {
     var errorCode = error.code;
     var errorMessage = error.message;
   });
   }
- let login = props.login;
- const setLogin = props.setLogin;
+
 
  // function handleSubmit(e) {
  //   e.preventDefault();
@@ -94,7 +91,7 @@ function Login(props) {
           <div className="login">
             <div className="image-container">
               <img
-                src={require("C:/Users/Emman/Desktop/where-was-i/front-end/src/test-image/background.png")}
+                src={require("/Users/rebeccaweeks/Desktop/Immersive/Week 5/where-was-i/front-end/src/test-image/background.png")}
                 alt=""
               />
             </div>
