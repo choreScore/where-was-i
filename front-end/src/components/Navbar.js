@@ -1,15 +1,9 @@
 import { useState, useEffect } from 'react';
 
-function Navbar({ setLogin ,homeButtonHandler }) {
-  async function handlerHome() {}
-
-  async function handlerAddShow() {}
-
-  async function handlerDeleteShow() {}
-
+function Navbar({ setLogin, homeButtonHandler, addShowHandler }) {
   async function handlerLogout() {
-    setLogin(false);
-    localStorage.setItem("user_id",false);
+    setLogin('false');
+    localStorage.setItem('user_id', 'false');
   }
 
   return (
@@ -18,7 +12,7 @@ function Navbar({ setLogin ,homeButtonHandler }) {
         <h1>Where Was I?</h1>
         <div className="buttons">
           <button onClick={homeButtonHandler}>Home</button>
-          <button>Add Show</button>
+          <button onClick={addShowHandler}>Add Show</button>
           <button onClick={handlerLogout}>Logout</button>
         </div>
       </div>
@@ -26,4 +20,4 @@ function Navbar({ setLogin ,homeButtonHandler }) {
   );
 }
 
-export default Navbar
+export default Navbar;
