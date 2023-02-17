@@ -28,13 +28,12 @@ function Homepage({ login, currentView, setCurrentView }) {
   }, []);
 
   return (
-    <div className='homepage'>
-      <div className='homepage-card-container'>
+    <div className="homepage">
+      <div className="homepage-card-container">
         {showList.map((show, index) => {
-          return <MoviePoster
-            key={index}
-            showname={show}
-          />;
+          return (
+            <MoviePoster key={index} showname={show} singleView={singleView} />
+          );
         })}
       </div>
     </div>
