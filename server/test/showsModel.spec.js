@@ -54,6 +54,7 @@ describe('Shows tests', () => {
       await showsModel.postNewShow(newShow[1]);
       const shows = await showsModel.getShowList(-5);
       expect(shows[0].showname).to.be.equal('Cowboy Bebop');
+      expect(shows[0].image).to.be.a('string');
     });
   });
 
