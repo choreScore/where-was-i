@@ -87,12 +87,6 @@ function Login(props) {
 
   if (props.login === "false") {
     return (
-      <div className="login-signup-container">
-        <div className="slider"></div>
-        <div className="slider-button">
-          <button className="slider-login">Login</button>
-          <button className="slider-signup">Signup</button>
-        </div>
 
         <div className="form-section">
           <div className="login">
@@ -165,7 +159,6 @@ function Login(props) {
             </div>
           </div>
         </div>
-      </div>
     );
   }
 }
