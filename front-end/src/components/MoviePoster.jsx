@@ -1,8 +1,8 @@
 import '../styles/movie-poster.css';
 
-function MoviePoster({ showname }) {
+function MoviePoster({ showname, singleView }) {
   return (
-    <div className='cards'>
+    <div className='cards' onClick={singleView}>
       <div className='image-container'>
         <div className='image'/>
       </div>

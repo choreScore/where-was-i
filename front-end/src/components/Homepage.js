@@ -34,6 +34,7 @@ function Homepage({ login, currentView, setCurrentView }) {
           return <MoviePoster
             key={index}
             showname={show}
+            singleView={singleView}
           />;
         })}
       </div>
