@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import '../styles/Homepage.css';
 import MoviePoster from './MoviePoster';
 
-function Homepage({ login, currentView, setCurrentView, setShowname, setProgress, setSingleShowId }) {
+function Homepage({ login, currentView, setCurrentView, setShowname, setProgress, setSingleShowId, setShowImage }) {
   const [showList, setShowList] = useState([]);
 
   useEffect(() => {
@@ -33,7 +33,9 @@ function Homepage({ login, currentView, setCurrentView, setShowname, setProgress
             setShowname={setShowname} 
             setCurrentView={setCurrentView}
             setProgress={setProgress}
-            setSingleShowId={setSingleShowId}/>
+            setSingleShowId={setSingleShowId}
+            setShowImage={setShowImage}
+            image={show.image}/>
           );
         })}
       </div>

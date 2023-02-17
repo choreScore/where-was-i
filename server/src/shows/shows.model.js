@@ -72,6 +72,7 @@ module.exports = {
   },
 
   async updateProgress(progressObject) {
+    console.log(progressObject)
     return await knex(USER_SHOW_TABLE)
       .where({
         show_id: progressObject.show_id,

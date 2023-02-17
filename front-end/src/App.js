@@ -13,6 +13,7 @@ function App() {
   const [showname, setShowname] = useState('');
   const [progress, setProgress] = useState([]);
   const [singleShowId, setSingleShowId] = useState('');
+  const [showImage, setShowImage] = useState('');
 
   function homeButtonHandler() {
     setCurrentView('Homepage');
@@ -45,6 +46,7 @@ function App() {
             progress={progress}
             login={login}
             singleShowId={singleShowId}
+            showImage={showImage}
             />
           </div>
         );
@@ -61,6 +63,7 @@ function App() {
               setShowname={setShowname}
               setProgress={setProgress}
               setSingleShowId={setSingleShowId}
+              setShowImage={setShowImage}
             />
           </div>
         );

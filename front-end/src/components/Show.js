@@ -4,13 +4,16 @@ import '../styles/Show.css';
 import Update from './Update'
 import Delete from './Delete'
 
-function Show({currentView, showname, progress, login, singleShowId}) {
+function Show({currentView, showname, progress, login, singleShowId, showImage}) {
+  console.log("in show")
   const [progressButton, setProgressButton] = useState(false);
   const [deleteButton, setDeleteButton] = useState(false);
 
-  console.log(progress)
+  console.log(showImage)
 
   let progressText = 'Season ' + progress[0] + ', ' + 'Episode ' + progress[1]
+
+  
   
   function handleProgressBtn(e){
     e.preventDefault();
@@ -22,32 +25,9 @@ function Show({currentView, showname, progress, login, singleShowId}) {
     setDeleteButton(true);
   } 
 
-
-  if (progressButton === false && deleteButton === false){
-    return (
-      <div className="single-show">
-        <div className="single-show-container">
-          <div className="show-image-container">
-            <img src={require('../test-image/sopranos.jpg')} />
-          </div>
   
-          <div className="show-text-container">
-            <div className="show-text">
-              <h1>{showname}</h1>
-              <h2>Progress:</h2>
-              <h3>{progressText}</h3>
-            </div>
-            <div className="update-progress-buttons">
-              <button onClick={handleProgressBtn}>Update Progress</button>
-              <button onClick={handleDeleteBtn}>Delete Show</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
-else if (progressButton === true){
+if (progressButton === true){
   return (
     <Update
       progressButton={progressButton}
@@ -55,7 +35,8 @@ else if (progressButton === true){
       showname={showname}
       login={login}
       progress={progress}
-      singleShowId={singleShowId}/>
+      singleShowId={singleShowId}
+      showImage={showImage}/>
   )
 }
 
@@ -68,8 +49,28 @@ else if (deleteButton === true){
      />
   )
 }
-}
 
+else {
+  return (
+    <div className="single-show">
+      <div className="single-show-container">
+          <div className='image' style={{background:`url(${showImage})`}}/>
+        <div className="show-text-container">
+          <div className="show-text">
+            <h1>{showname}</h1>
+            <h2>Progress:</h2>
+            <h3>{progressText}</h3>
+          </div>
+          <div className="update-progress-buttons">
+            <button onClick={handleProgressBtn}>Update Progress</button>
+            <button onClick={handleDeleteBtn}>Delete Show</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+}
 
 
 export default Show;
