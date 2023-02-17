@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import '../styles/Homepage.css';
 import MoviePoster from './MoviePoster';
 
-function Homepage({ login, currentView, setCurrentView }) {
+function Homepage({ login, currentView, setCurrentView, setShowname }) {
   const [showList, setShowList] = useState([]);
 
   function singleView(e) {
@@ -32,7 +32,7 @@ function Homepage({ login, currentView, setCurrentView }) {
       <div className='homepage-card-container'>
         {showList.map((show, index) => {
           return (
-            <MoviePoster key={index} showname={show} singleView={singleView} />
+            <MoviePoster key={index} showname={show} singleView={singleView} setShowname={setShowname} />
           );
         })}
       </div>
