@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect} from 'react';
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import Homepage from './Homepage';
 import '../styles/Login.css';
@@ -22,6 +22,7 @@ function Login(props) {
   const [loginUsername, setloginUsername] = useState('');
   const [createPassword, setCreatePassword] = useState('');
   const [createUsername, setCreateUsername] = useState('');
+
  
   function createUser(e) {
     e.preventDefault();
@@ -29,7 +30,6 @@ function Login(props) {
       .createUserWithEmailAndPassword(auth, loginEmail, createPassword)
       .then(async (userCredential) => {
         var user = userCredential.user;
-        console.log(user);
         const checkstat = await fetch('http://localhost:4000/user', {
           headers: {
             Accept: 'application/json',
@@ -41,15 +41,22 @@ function Login(props) {
             username: createUsername,
             email: user.email,
           }),
+          
         });
-        const node = document.getElementById("user1");
-        console.log("hello");
+       
       })
       .catch((error) => {
         var errorCode = error.code;
         var errorMessage = error.message;
         console.log(errorMessage);
       });
+      const node= document.getElementsByClassName("user1");
+     node[0].value="";
+     node[1].value="";
+     node[2].value="";
+     setCreatePassword('');
+     setloginEmail('');
+     setCreateUsername('');
   }
 
   async function loginUser(e) {
@@ -87,12 +94,6 @@ function Login(props) {
 
   if (props.login === "false") {
     return (
-      <div className="login-signup-container">
-        <div className="slider"></div>
-        <div className="slider-button">
-          <button className="slider-login">Login</button>
-          <button className="slider-signup">Signup</button>
-        </div>
 
         <div className="form-section">
           <div className="login">
@@ -108,7 +109,7 @@ function Login(props) {
                 <div className="labels">
                   <label for="login">username</label>
                   <input
-                    id='user1'
+                    className='user1'
                     placeholder="Username"
                     type="text"
                     name="login"
@@ -118,6 +119,7 @@ function Login(props) {
                   <br></br>
                   <label for="login"> Email:</label>
                   <input
+                  className='user1'
                     placeholder="Email"
                     type="text"
                     name="login"
@@ -127,6 +129,7 @@ function Login(props) {
                   <br></br>
                   <label for="password">Password:</label>
                   <input
+                   className='user1'
                     placeholder="Password"
                     type="password"
                     name="password"
@@ -165,7 +168,6 @@ function Login(props) {
             </div>
           </div>
         </div>
-      </div>
     );
   }
 }
