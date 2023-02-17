@@ -43,12 +43,11 @@ function Login(props) {
           }),
           
         });
-       
       })
       .catch((error) => {
         var errorCode = error.code;
         var errorMessage = error.message;
-        console.log(errorMessage);
+        window.alert(errorMessage);
       });
       const node= document.getElementsByClassName("user1");
      node[0].value="";
@@ -57,6 +56,7 @@ function Login(props) {
      setCreatePassword('');
      setloginEmail('');
      setCreateUsername('');
+     window.alert("you can login");
   }
 
   async function loginUser(e) {
@@ -81,6 +81,8 @@ function Login(props) {
       .catch((error) => {
         var errorCode = error.code;
         var errorMessage = error.message;
+        console.log(errorMessage);
+        window.alert("dont forget your password!!!")
       });
   }
 
