@@ -59,11 +59,12 @@ function Login(props) {
       .then((userCredential) => {
         var user = userCredential.user.uid;
         props.setLogin(user);
+        localStorage.setItem("auth_token",user);
         props.setCurrentView('Homepage');
         props.setUserInfo({
-          username: data.username,
-          email: data.email,
-          user_id: data.user_id,
+          username: data[0].username,
+          email: data[0].email,
+          user_id: data[0].user_id,
         });
       })
       .catch((error) => {
