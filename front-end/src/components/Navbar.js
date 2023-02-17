@@ -8,8 +8,8 @@ function Navbar({ setLogin ,homeButtonHandler }) {
   async function handlerDeleteShow() {}
 
   async function handlerLogout() {
-    setLogin(false);
-    localStorage.setItem("user_id",false);
+    setLogin('false');
+    localStorage.setItem("user_id",'false');
   }
 
   return (

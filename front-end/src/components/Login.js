@@ -42,9 +42,8 @@ function Login(props) {
             email: user.email,
           }),
         });
-        setloginEmail('');
-        setCreatePassword('');
-        setCreateUsername('');
+        const node = document.getElementById("user1");
+        console.log("hello");
       })
       .catch((error) => {
         var errorCode = error.code;
@@ -86,7 +85,7 @@ function Login(props) {
   //   props.setCurrentView("Homepage");
   // }
 
-  if (props.login === false) {
+  if (props.login === "false") {
     return (
       <div className="login-signup-container">
         <div className="slider"></div>
@@ -109,6 +108,7 @@ function Login(props) {
                 <div className="labels">
                   <label for="login">username</label>
                   <input
+                    id='user1'
                     placeholder="Username"
                     type="text"
                     name="login"
