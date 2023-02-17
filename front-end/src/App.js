@@ -22,35 +22,25 @@ function homeButtonHandler(){
 
 
 async function getShowID(name){
-  let array = fetch(`https://api.themoviedb.org/3/search/movie?api_key=22232a34b1256a41ee95dfdb04aa1810&language=en-US&query=${name}&page=1&include_adult=false`)
-  .then((data) => data.json())
-  .then((object) => object.results)
-  .then((result) => (result))
-  .catch((error) => console.log(error))
-
-  console.log(array)
+  const data = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=22232a34b1256a41ee95dfdb04aa1810&language=en-US&query=warcraft&page=1&include_adult=false`)
+  const dataTreated = await data.json();
+  if(dataTreated.results.lenthth > 1){
+    for(let movie of dataTreated.results){
+      if(movie.name == name){
+        return movie.id;
+      }
+    }
+  }
 }
 
 async function getShowImage(name){
-  let array = fetch(`https://api.themoviedb.org/3/search/movie?api_key=22232a34b1256a41ee95dfdb04aa1810&language=en-US&query=${name}&page=1&include_adult=false`)
-  .then((data) => data.json())
-  .then((data) => data.results)
-  .then((result) => result)
-
-  // .then((id) => fetch(`https://api.themoviedb.org/3/search/movie?api_key=22232a34b1256a41ee95dfdb04aa1810&language=en-US&query=${id}&page=1&include_adult=false`))
-  // .then((image) => image.json())
-  // .then((imageSource) => `https://image.tmdb.org/t/p/original/${imageSource}`)
-  .catch((error) => console.log(error))
-
-  // const data = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=22232a34b1256a41ee95dfdb04aa1810&language=en-US&query=${name}&page=1&include_adult=false`)
-  // const id = await data.json();
-  // const image = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=22232a34b1256a41ee95dfdb04aa1810&language=en-US&query=${id}&page=1&include_adult=false`)
-  // const imageSource = await data.json();
-  // return (`https://image.tmdb.org/t/p/original/${imageSource}`)
+  let id = await getShowID(name);3
+  let posterAdd = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=22232a34b1256a41ee95dfdb04aa1810&language=en-US&query=${id}&page=1&include_adult=false`)
+  let posterAddTreated = posterAdd.json();
+  return (`https://image.tmdb.org/t/p/original/${posterAddTreated}`);
 }
 
-// console.log('here ---->', getShowImage("Jack Reacher"))
-getShowID("Jack Reacher")
+
 
 
 // async function singleShow(){
