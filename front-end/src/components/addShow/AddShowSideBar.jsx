@@ -4,14 +4,17 @@ function AddShowSideBar(props) {
   const [seasonSelect, setSeasonSelectd] = useState('');
   const [episodeSelect, setpisodeSelected] = useState('');
 
-async function updateDatabase(){
+async function updateDatabase(e){
+    console.log(props);
+    e.preventDefault();
+    console.log(seasonSelect);
     const obj = {
       "user_id":localStorage.user_id,
-      "show_id":props.show_id,
-      "showname":props.name,
+      "show_id":props.showSelected.show_id,
+      "name":props.showSelected.name,
       "season":seasonSelect,
       "episode":episodeSelect,
-      "image":`https://image.tmdb.org/t/p/original${props.image}`
+      "url":`https://image.tmdb.org/t/p/original${props.showSelected.image}`
     }
 
     await fetch('http://localhost:4000/user/shows', {
@@ -28,29 +31,26 @@ async function updateDatabase(){
 
   return (
     <div className="addshow-side">
-      <form action={updateDatabase}>
+      <form onSubmit={updateDatabase}>
         <input
           className="addShow"
           type='text'
           name='Season'
-          id='season'
           placeholder='season'
           value={seasonSelect}
           required
           onChange={(event) =>setSeasonSelectd(event.target.value)}
-          
         />
         <input
           className="addShow"
           type='text'
           name='Episode'
-          id='episode'
           placeholder='episode'
           value={episodeSelect}
           required
           onChange={(event) =>setpisodeSelected(event.target.value)}
         />
-        <button type='submit' href='/'>
+        <button type='submit'>
           Submit
         </button>
       </form>

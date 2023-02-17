@@ -3,8 +3,7 @@ import '../styles/movie-poster.css';
 
 function MoviePoster({ showname, setShowname, setCurrentView, season, episode, singleShowId, setProgress, setSingleShowId }) {
 
-  console.log(setSingleShowId)
-  console.log(showId)
+
 
 
   return (
