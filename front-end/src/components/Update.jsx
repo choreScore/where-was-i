@@ -3,25 +3,48 @@ import Show from './Show'
 import '../styles/Show.css';
 import '../styles/Update.css';
 
-function Update({ progressButton, setProgressButton}){
+function Update({ progressButton, setProgressButton, showname, login, singleShowId, progress}){
 
     function goBack(e){
         e.preventDefault();
         setProgressButton(false)
     }
 
+    let requestOption = {
+        method: "PUT",
+        body: {
+            user_id: login,
+            show_id: singleShowId,
+            showname: showname,
+            season: progress[0],
+            episode: progress[1]
+        }
+    }
+
+
+
     function updateProgress(e){
         e.preventDefault();
-
-        //get inputed data
-        //send to DB
+        let requestOption = {
+            method: "PUT",
+            body: {
+                user_id: login,
+                show_id: singleShowId,
+                showname: showname,
+                season: progress[0],
+                episode: progress[1],
+                image: 'url'
+            }
+        };
+        fetch('http://localhost:4000/user/shows', requestOption);
     }
+
 
 if (progressButton === true){
     return(
         <div className='popup'>
-            <h1>Update Show Progress</h1>
-            <form onSubmit={updateProgress}>
+            <h1>{showname}: Update Progress</h1>
+            <form>
                 <label>Season</label>
                 <input 
                     type="number"
@@ -34,7 +57,7 @@ if (progressButton === true){
                     name="Episode">
                 </input>
             </form>
-            <button>Update</button>
+            <button onClick={updateProgress}>Update</button>
             <button onClick={goBack}>Cancel</button>
       </div>
     )}

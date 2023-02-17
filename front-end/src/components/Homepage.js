@@ -2,13 +2,8 @@ import { useState, useEffect } from 'react';
 import '../styles/Homepage.css';
 import MoviePoster from './MoviePoster';
 
-function Homepage({ login, currentView, setCurrentView, setShowname }) {
+function Homepage({ login, currentView, setCurrentView, setShowname, setProgress, setSingleShowId }) {
   const [showList, setShowList] = useState([]);
-
-  function singleView(e) {
-    e.preventDefault();
-    setCurrentView('SingleShow');
-  }
 
   useEffect(() => {
     const getShows = async () => {
@@ -17,11 +12,7 @@ function Homepage({ login, currentView, setCurrentView, setShowname }) {
         `http://localhost:4000/user/shows?user_id=-1`
       );
       const parsed = await shows.json();
-      const result = parsed.reduce((acc, cur) => {
-        acc.push(cur.showname);
-        return acc;
-      }, []);
-      setShowList(result);
+      setShowList(parsed);
     };
 
     getShows();
@@ -32,7 +23,16 @@ function Homepage({ login, currentView, setCurrentView, setShowname }) {
       <div className='homepage-card-container'>
         {showList.map((show, index) => {
           return (
-            <MoviePoster key={index} showname={show} singleView={singleView} setShowname={setShowname} />
+            <MoviePoster 
+            key={index} 
+            showname={show.showname}
+            season={show.season}
+            episode={show.episode} 
+            singleShowId={show.show_id}
+            setShowname={setShowname} 
+            setCurrentView={setCurrentView}
+            setProgress={setProgress}
+            setSingleShowId={setSingleShowId}/>
           );
         })}
       </div>
