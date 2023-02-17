@@ -1,8 +1,9 @@
+import { useEffect } from 'react';
 import '../styles/movie-poster.css';
 
-function MoviePoster({ showname, singleView }) {
+function MoviePoster({ showname, singleView, setShowname }) {
   return (
-    <div className='cards' onClick={singleView}>
+    <div className='cards' onClick={singleView} onChange={setShowname(showname)}>
       <div className='image-container'>
         <div className='image'/>
       </div>
