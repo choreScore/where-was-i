@@ -1,0 +1,42 @@
+.addshow-home {
+  display: flex;
+  height: 100vh; 
+  flex-direction: column;
+}
+
+.addshow-nav {
+  display: flex;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.addshow-nav input {
+  text-align: center;
+}
+
+.addshow-nav button {
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.addshow-bottom {
+  height: 100%;
+  display: flex;
+}
+
+.addshow-main {
+  width: 70%;
+  background-color: blue;
+}
+
+.addshow-side {
+  background-color: red;
+  height: 100%;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+

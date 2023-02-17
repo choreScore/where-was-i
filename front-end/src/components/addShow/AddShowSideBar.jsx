@@ -1,6 +1,6 @@
 function AddShowSideBar() {
   return (
-    <div>
+    <div className="addshow-side">
       <form action='/'>
         <input
           type='number'
