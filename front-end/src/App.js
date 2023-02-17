@@ -9,12 +9,15 @@ import Navbar from './components/Navbar';
 
 
 function App() {
-const [login, setLogin] = useState(false);
+const [login, setLogin] = useState('false');
 // const [allShowNames, setAllShowNames] = useState([]);
 // const [allShowImages, setAllShowImages] = useState([]);
 // const [selectedShow, setSelectedShow] = useState([]);
 const [currentView, setCurrentView]  = useState("");
 const [userInfo, setUserInfo] = useState({});
+
+
+
 
 function homeButtonHandler(){
   setCurrentView('Homepage')
@@ -34,15 +37,23 @@ async function getShowID(name){
 }
 
 async function getShowImage(name){
-  let id = await getShowID(name);3
+  let id = await getShowID(name);
   let posterAdd = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=22232a34b1256a41ee95dfdb04aa1810&language=en-US&query=${id}&page=1&include_adult=false`)
   let posterAddTreated = posterAdd.json();
   return (`https://image.tmdb.org/t/p/original/${posterAddTreated}`);
 }
 
 
-
-
+function check(){
+  if (localStorage["user_id"]!=='false'){
+    console.log(localStorage.user_id);
+    setLogin(localStorage["user_id"]);
+    setCurrentView("Homepage");
+  }
+}
+useEffect(() => {
+check();
+},[login]);
 // async function singleShow(){
   //combine text and image
   //setSelectedShow()
@@ -53,7 +64,8 @@ async function getShowImage(name){
 
 
 
-if (login === false){
+if (login === 'false'){
+  console.log('enter');
   return (
     <div className='Login'>
       <Login
