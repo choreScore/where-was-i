@@ -10,7 +10,9 @@ function App() {
   const [login, setLogin] = useState('false');
   const [currentView, setCurrentView] = useState('');
   const [userInfo, setUserInfo] = useState({});
-  const [showname, setShowname] = useState('')
+  const [showname, setShowname] = useState('');
+  const [progress, setProgress] = useState([]);
+  const [singleShowId, setSingleShowId] = useState('');
 
   function homeButtonHandler() {
     setCurrentView('Homepage');
@@ -38,7 +40,12 @@ function App() {
       case 'SingleShow':
         return (
           <div className='single-show'>
-            <Show currentView={currentView} />
+            <Show currentView={currentView} 
+            showname={showname}
+            progress={progress}
+            login={login}
+            singleShowId={singleShowId}
+            />
           </div>
         );
       case 'Homepage':
@@ -52,6 +59,8 @@ function App() {
               userInfo={userInfo}
               setUserInfo={setUserInfo}
               setShowname={setShowname}
+              setProgress={setProgress}
+              setSingleShowId={setSingleShowId}
             />
           </div>
         );
