@@ -52,8 +52,8 @@ module.exports = {
     if (!checkShow) {
       await knex(TV_SHOWS_TABLE).insert({
         show_id: newShowObject.show_id,
-        name: newShowObject.showName,
-        url: newShowObject.image,
+        name: newShowObject.name,
+        url: newShowObject.url,
       });
     }
     // ELSE JUST ADD TO USER MOVIE TABLE

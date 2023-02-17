@@ -8,14 +8,15 @@ function Homepage({ login, currentView, setCurrentView, setShowname, setProgress
   useEffect(() => {
     const getShows = async () => {
       let shows = await fetch(
-        // `http//localhost:4000/user/shows?user_id=${login}`
-        `http://localhost:4000/user/shows?user_id=-1`
+        `http://localhost:4000/user/shows?user_id=${login}`
       );
       const parsed = await shows.json();
       setShowList(parsed);
+      console.log(shows);
     };
-
+     
     getShows();
+    
   }, []);
 
   return (

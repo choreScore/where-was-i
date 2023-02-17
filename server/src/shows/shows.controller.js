@@ -18,6 +18,8 @@ module.exports = {
       image: url
     };
     */
+   console.log("HAHSHJAGDGHSDJGDSJGHDHGSD");
+   console.log(req.body);
     await showsModel.postNewShow(req.body);
     res.status(201).send('New show successfully added.');
   },
