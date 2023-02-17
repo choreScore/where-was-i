@@ -1,4 +1,6 @@
-function AddShowMain() {
+import SearchPoster from "./SearchPoster.jsx";
+
+function AddShowMain({searchList, setShowSelected}) {
 
   // async function getShowImage(name) {
   //   let id = await getShowID(name);
@@ -12,7 +14,11 @@ function AddShowMain() {
 
   return (
     <div className="addshow-main">
-      {/* Map on through fetch object and create a div for each object in there */}
+      { searchList.map((show, index) => {
+          return (
+            <SearchPoster key={index} show={show} setShowSelected={setShowSelected} />
+          );
+        })}
     </div>
   );
 }
