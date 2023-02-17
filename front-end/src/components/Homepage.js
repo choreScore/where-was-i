@@ -3,9 +3,7 @@ import '../styles/Homepage.css';
 import MoviePoster from './MoviePoster';
 
 function Homepage({ login, currentView, setCurrentView }) {
-  const [display, setDisplay] = useState('hide_button');
   const [showList, setShowList] = useState([]);
-  const [loading, setLoading] = useState(undefined);
 
   function singleView(e) {
     e.preventDefault();
@@ -35,9 +33,7 @@ function Homepage({ login, currentView, setCurrentView }) {
         {showList.map((show, index) => {
           return <MoviePoster
             key={index}
-            setDisplay={setDisplay}
             showname={show}
-            display={display}
           />;
         })}
       </div>
