@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useRef} from 'react';
 import Login from './components/Login';
 import Homepage from './components/Homepage'
 import Show from './components/Show'
@@ -15,6 +15,7 @@ const [login, setLogin] = useState('false');
 // const [selectedShow, setSelectedShow] = useState([]);
 const [currentView, setCurrentView]  = useState("");
 const [userInfo, setUserInfo] = useState({});
+
 
 
 
@@ -46,7 +47,6 @@ async function getShowImage(name){
 
 function check(){
   if (localStorage["user_id"]!=='false'){
-    console.log(localStorage.user_id);
     setLogin(localStorage["user_id"]);
     setCurrentView("Homepage");
   }
@@ -65,7 +65,6 @@ check();
 
 
 if (login === 'false'){
-  console.log('enter');
   return (
     <div className='Login'>
       <Login
