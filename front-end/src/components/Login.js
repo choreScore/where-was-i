@@ -20,11 +20,13 @@ function Login(props) {
   const [loginEmail, setloginEmail] = useState('');
   const [loginPassword, setloginPassword] = useState('');
   const [loginUsername, setloginUsername] = useState('');
-
+  const [createPassword, setCreatePassword] = useState('');
+  const [createUsername, setCreateUsername] = useState('');
+ 
   function createUser(e) {
     e.preventDefault();
     fire
-      .createUserWithEmailAndPassword(auth, loginEmail, loginPassword)
+      .createUserWithEmailAndPassword(auth, loginEmail, createPassword)
       .then(async (userCredential) => {
         var user = userCredential.user;
         console.log(user);
@@ -36,10 +38,13 @@ function Login(props) {
           method: 'POST',
           body: JSON.stringify({
             auth_token: user.uid,
-            username: loginUsername,
+            username: createUsername,
             email: user.email,
           }),
         });
+        setloginEmail('');
+        setCreatePassword('');
+        setCreateUsername('');
       })
       .catch((error) => {
         var errorCode = error.code;
@@ -58,8 +63,8 @@ function Login(props) {
       .signInWithEmailAndPassword(auth, data[0].email, loginPassword)
       .then((userCredential) => {
         var user = userCredential.user.uid;
-        props.setLogin(user);
-        localStorage.setItem("auth_token",user);
+        props.setLogin(data[0].user_id);
+        localStorage.setItem("user_id",data[0].user_id);
         props.setCurrentView('Homepage');
         props.setUserInfo({
           username: data[0].username,
@@ -107,8 +112,8 @@ function Login(props) {
                     placeholder="Username"
                     type="text"
                     name="login"
-                    value={loginUsername}
-                    onChange={(event) => setloginUsername(event.target.value)}
+                    value={createUsername}
+                    onChange={(event) =>setCreateUsername(event.target.value)}
                   />
                   <br></br>
                   <label for="login"> Email:</label>
@@ -125,8 +130,8 @@ function Login(props) {
                     placeholder="Password"
                     type="password"
                     name="password"
-                    value={loginPassword}
-                    onChange={(event) => setloginPassword(event.target.value)}
+                    value={createPassword}
+                    onChange={(event) => setCreatePassword(event.target.value)}
                   />
                 </div>
                 <div className="login-button">

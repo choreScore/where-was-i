@@ -1,13 +1,16 @@
 import { useState, useEffect } from 'react';
 
-function Navbar({ homeButtonHandler }) {
+function Navbar({ setLogin ,homeButtonHandler }) {
   async function handlerHome() {}
 
   async function handlerAddShow() {}
 
   async function handlerDeleteShow() {}
 
-  async function handlerLogout() {}
+  async function handlerLogout() {
+    setLogin(false);
+    localStorage.setItem("user_id",false);
+  }
 
   return (
     <div className="navbar-container">
@@ -16,7 +19,7 @@ function Navbar({ homeButtonHandler }) {
         <div className="buttons">
           <button onClick={homeButtonHandler}>Home</button>
           <button>Add Show</button>
-          <button>Logout</button>
+          <button onClick={handlerLogout}>Logout</button>
         </div>
       </div>
     </div>

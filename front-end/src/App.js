@@ -82,6 +82,7 @@ if (currentView === 'Homepage'){
   return (
     <div className='Homepage'>
       <Navbar
+        setLogin={setLogin}
         homeButtonHandler={homeButtonHandler}>
       </Navbar>
       <Homepage
