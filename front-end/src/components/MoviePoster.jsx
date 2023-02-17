@@ -1,9 +1,20 @@
 import { useEffect } from 'react';
 import '../styles/movie-poster.css';
 
-function MoviePoster({ showname, singleView, setShowname }) {
+function MoviePoster({ showname, setShowname, setCurrentView, season, episode, singleShowId, setProgress, setSingleShowId }) {
+
+  console.log(setSingleShowId)
+  console.log(showId)
+
+
   return (
-    <div className='cards' onClick={singleView} onChange={setShowname(showname)}>
+    <div className='cards' 
+    onClick={() => {
+      setShowname(showname);
+      setCurrentView('SingleShow');
+      setProgress([season, episode]);
+      setSingleShowId(singleShowId);
+    }}>
       <div className='image-container'>
         <div className='image'/>
       </div>

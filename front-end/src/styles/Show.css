@@ -1,11 +1,3 @@
-.header{
-    max-width: 100%;
-    background-color: rgb(255, 166, 0);
-    color: black;
-    margin-top: -1rem;
-    padding: 1rem
-}
-
 .single-show-container{
     display: grid;
     gap: 0px;
@@ -36,18 +28,4 @@
     padding: 1rem;
     border-top-right-radius: 25px;
     border-bottom-right-radius: 25px;
-}
-
-.popup {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    background-color: blueviolet;
-    transform: translate(-50% -50%);
-    transform: scale(1.0);
-    transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
-    padding: 1rem 1.5rem;
-    width: 24rem;
-    border-radius: 0.5rem;
-
 }

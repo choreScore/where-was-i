@@ -3,8 +3,7 @@ const server = express();
 const userController = require('./user/user.controller');
 const showsController = require('./shows/shows.controller');
 
-const cors = require("cors");
-
+const cors = require('cors');
 
 server.use(express.json());
 server.use(cors());
@@ -34,7 +33,6 @@ const serverEndpoints = () => {
   // server.delete('/user', userController.deleteUser);
   //UPDATE USER INFO // PASSWORD RESET BUTTON
   // server.update('/user', userController.updateUser);
-
 
   return server;
 };

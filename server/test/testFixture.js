@@ -9,6 +9,8 @@ module.exports = {
         showName: 'Breaking Bad',
         season: 2,
         episode: 10,
+        image:
+          'https://image.tmdb.org/t/p/original/nZIIOs06YigBnvmlJ2hxZeA8eTO.jpg',
       },
       {
         user_id: USER_ID,
@@ -16,6 +18,8 @@ module.exports = {
         showName: 'Cowboy Bebop',
         season: 1,
         episode: 4,
+        image:
+          'https://image.tmdb.org/t/p/original/nZIIOs06YigBnvmlJ2hxZeA8eTO.jpg',
       },
     ];
   },

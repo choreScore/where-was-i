@@ -12,9 +12,10 @@ module.exports = {
     {
       user_id: USER_ID,
       show_id: 6,
-      showName: 'Cowboy Bebop',
+      showname: 'Cowboy Bebop',
       season: 1,
       episode: 4,
+      image: url
     };
     */
     await showsModel.postNewShow(req.body);
