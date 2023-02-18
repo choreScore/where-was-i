@@ -17,7 +17,7 @@ module.exports = {
       .select({
         username: 'users.username',
         email: 'users.email',
-        user_id: 'users.user_id'
+        user_id: 'users.user_id',
       })
       .where('username', username);
   },

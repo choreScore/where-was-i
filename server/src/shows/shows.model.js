@@ -31,6 +31,7 @@ module.exports = {
         show_id: 'tv_shows.show_id',
         season: 'user_shows.season',
         episode: 'user_shows.episode',
+        image: 'tv_shows.url',
       })
       .where('users.user_id', userId);
   },
@@ -51,7 +52,8 @@ module.exports = {
     if (!checkShow) {
       await knex(TV_SHOWS_TABLE).insert({
         show_id: newShowObject.show_id,
-        name: newShowObject.showName,
+        name: newShowObject.name,
+        url: newShowObject.url,
       });
     }
     // ELSE JUST ADD TO USER MOVIE TABLE
@@ -70,6 +72,7 @@ module.exports = {
   },
 
   async updateProgress(progressObject) {
+    console.log(progressObject)
     return await knex(USER_SHOW_TABLE)
       .where({
         show_id: progressObject.show_id,
