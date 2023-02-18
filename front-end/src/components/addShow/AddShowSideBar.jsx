@@ -5,15 +5,35 @@ import { faXmarkCircle } from '@fortawesome/free-solid-svg-icons';
 function AddShowSideBar(props) {
   const [seasonSelect, setSeasonSelectd] = useState('');
   const [episodeSelect, setpisodeSelected] = useState('');
+  // const [showInfo, setShowInfo] = useState(false);
+  // const [episodesPerSeason, setEpisodesPerSeason] = useState([]);
 
   // useEffect(() => {
-  //   getShowInfo(props.showSelected.show_id)
+  //   getShowInfo(props.showSelected.show_id);
   // }, []);
   //
   // async function getShowInfo(showId) {
   //   const data = await fetch(
-  //     `https://api.themoviedb.org/3/search/tv/${showId}?api_key=22232a34b1256a41ee95dfdb04aa1810&language=en-US`
+  //     `https://api.themoviedb.org/3/tv/${showId}?api_key=22232a34b1256a41ee95dfdb04aa1810`
   //   ).then((data) => data.json());
+  //   setShowInfo(data);
+  // }
+
+  // function handleEpisode(e) {
+  //   const episodeNumber =
+  //     showInfo.seasons[parseInt(e.currentTarget.value)].episode_count;
+  //   setEpisodesPerSeason(episodeNumber);
+  //   const arrayOfNumbers = [];
+  //   for (let i = 1; i <= episodeNumber; i++) {
+  //     arrayOfNumbers.push(i);
+  //   }
+  //   setEpisodesPerSeason(arrayOfNumbers);
+  //   setSeasonSelectd(episodeNumber)
+  // }
+
+  // function recordEpisode(e) {
+  //   setpisodeSelected(parseInt(e.currentTarget.value))
+  //   console.log(typeof seasonSelect, typeof episodeSelect)
   // }
 
   async function updateDatabase(e) {
@@ -55,7 +75,7 @@ function AddShowSideBar(props) {
           className='icon-button'
           onClick={closeButton}
         />
-        <form onSubmit={updateDatabase}>
+        <form id='update-form' onSubmit={updateDatabase}>
           <input
             className='input-addnew'
             type='text'
@@ -76,6 +96,29 @@ function AddShowSideBar(props) {
             required
             onChange={(event) => setpisodeSelected(event.target.value)}
           />
+
+          {/*<select name='season' id='season-select'>
+            {showInfo &&
+              showInfo.seasons.map((each, index) => {
+                if (index !== 0) {
+                  return (
+                    <option key={index} value={index} onClick={handleEpisode}>
+                      {index}
+                    </option>
+                  );
+                }
+              })}
+          </select>
+          <select name='episodes' id='episode-select'>
+            {showInfo &&
+              episodesPerSeason.map((each) => {
+                return (
+                  <option key={each} value={each} onClick={recordEpisode}>
+                    {each}
+                  </option>
+                );
+              })}
+          </select>*/}
           <button type='submit' className='btn'>
             Add show!
           </button>
