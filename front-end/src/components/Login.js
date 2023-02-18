@@ -116,7 +116,7 @@ function Login(props) {
                     type="text"
                     name="login"
                     value={createUsername}
-                    onChange={(event) =>setCreateUsername(event.target.value)}
+                    onChange={(event) => setCreateUsername(event.target.value)}
                   />
                   <br></br>
                   <label for="login"> Email:</label>
