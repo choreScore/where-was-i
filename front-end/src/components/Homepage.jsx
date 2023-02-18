@@ -2,7 +2,15 @@ import { useState, useEffect } from 'react';
 import '../styles/Homepage.css';
 import MoviePoster from './MoviePoster';
 
-function Homepage({ login, currentView, setCurrentView, setShowname, setProgress, setSingleShowId, setShowImage }) {
+function Homepage({
+  login,
+  currentView,
+  setCurrentView,
+  setShowname,
+  setProgress,
+  setSingleShowId,
+  setShowImage,
+}) {
   const [showList, setShowList] = useState([]);
 
   useEffect(() => {
@@ -12,11 +20,9 @@ function Homepage({ login, currentView, setCurrentView, setShowname, setProgress
       );
       const parsed = await shows.json();
       setShowList(parsed);
-      console.log(shows);
     };
-     
+
     getShows();
-    
   }, []);
 
   return (
@@ -24,18 +30,19 @@ function Homepage({ login, currentView, setCurrentView, setShowname, setProgress
       <div className='homepage-card-container'>
         {showList.map((show, index) => {
           return (
-            <MoviePoster 
-            key={index} 
-            showname={show.showname}
-            season={show.season}
-            episode={show.episode} 
-            singleShowId={show.show_id}
-            setShowname={setShowname} 
-            setCurrentView={setCurrentView}
-            setProgress={setProgress}
-            setSingleShowId={setSingleShowId}
-            setShowImage={setShowImage}
-            image={show.image}/>
+            <MoviePoster
+              key={index}
+              showname={show.showname}
+              season={show.season}
+              episode={show.episode}
+              singleShowId={show.show_id}
+              setShowname={setShowname}
+              setCurrentView={setCurrentView}
+              setProgress={setProgress}
+              setSingleShowId={setSingleShowId}
+              setShowImage={setShowImage}
+              image={show.image}
+            />
           );
         })}
       </div>
