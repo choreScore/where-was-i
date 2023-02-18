@@ -1,4 +1,4 @@
-import './App.css';
+import './styles/App.css';
 import { useState, useEffect } from 'react';
 import Login from './components/Login';
 import Homepage from './components/Homepage';
@@ -41,12 +41,13 @@ function App() {
       case 'SingleShow':
         return (
           <div className='single-show'>
-            <Show currentView={currentView} 
-            showname={showname}
-            progress={progress}
-            login={login}
-            singleShowId={singleShowId}
-            showImage={showImage}
+            <Show
+              currentView={currentView}
+              showname={showname}
+              progress={progress}
+              login={login}
+              singleShowId={singleShowId}
+              showImage={showImage}
             />
           </div>
         );
@@ -71,7 +72,7 @@ function App() {
   }
 
   function addShowHandler() {
-    setCurrentView('AddNew')
+    setCurrentView('AddNew');
   }
 
   if (login === 'false') {
