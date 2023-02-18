@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope, faUser, faLock } from '@fortawesome/free-solid-svg-icons'
 import Homepage from './Homepage';
 import '../styles/Login.css';
 const firebase = require('firebase/app');
 const fire = require('firebase/auth');
+
+
 
 const app = firebase.initializeApp({
   apiKey: 'AIzaSyBdo-9REbvNterk3UIMaAJhvd35BK2v0ls',
@@ -84,74 +87,76 @@ function Login(props) {
       });
   }
 
-  // function handleSubmit(e) {
-  //   e.preventDefault();
-  //   console.log(loginEmail);
-  //   console.log(loginPassword)
-  //   setLogin(true);
-  //   props.setCurrentView("Homepage");
-  // }
-
   if (props.login === 'false') {
     return (
-      <div className='form-section'>
-        <div className='login'>
-          <div className='image-container'>
-            <img src={require('../images/background.png')} alt='' />
+      <div className='login-signup-container'>
+
+        <div className='image-container'>
+          <img src={require('../images/background.png')} alt='' />
+        </div>
+
+        <div className='form-container'>
+          <div className='login-title'>
+            <h2>Where Was I?</h2>
+            <h3>Welcome back!
+        
+            </h3>
           </div>
-          <div className='login-container'>
-            <div className='login-title'>
-              <h2>Where Was I?</h2>
-              <h3>Welcome back!</h3>
-            </div>
-            <form onSubmit={createUser} className='form-login'>
-              <div className='labels'>
-                <label for='login'>username</label>
-                <input
-                  className='user1'
-                  placeholder='Username'
-                  type='text'
-                  name='login'
-                  value={createUsername}
-                  onChange={(event) => setCreateUsername(event.target.value)}
-                />
-                <br></br>
-                <label for='login'> Email:</label>
-                <input
-                  className='user1'
-                  placeholder='Email'
-                  type='text'
-                  name='login'
-                  value={loginEmail}
-                  onChange={(event) => setloginEmail(event.target.value)}
-                />
-                <br></br>
-                <label for='password'>Password:</label>
-                <input
-                  className='user1'
-                  placeholder='Password'
-                  type='password'
-                  name='password'
-                  value={createPassword}
-                  onChange={(event) => setCreatePassword(event.target.value)}
-                />
+
+          <div className='signup-container'>
+            <form onSubmit={createUser} className='form-signup'>
+              <label for='username'><FontAwesomeIcon icon={faUser}/></label>
+              <input
+                className='user1'
+                placeholder='Username'
+                type='text'
+                name='username'
+                value={createUsername}
+                onChange={(event) => setCreateUsername(event.target.value)}
+              />
+              <br></br>
+
+              <label for='email'> <FontAwesomeIcon icon={faEnvelope}/></label>
+              <input
+                className='user1'
+                placeholder='Email'
+                type='text'
+                name='email'
+                value={loginEmail}
+                onChange={(event) => setloginEmail(event.target.value)}
+              />
+              <br></br>
+
+              <label for='password'><FontAwesomeIcon icon={faLock}/></label>
+              <input
+                className='user1'
+                placeholder='Password'
+                type='password'
+                name='password'
+                value={createPassword}
+                onChange={(event) => setCreatePassword(event.target.value)}
+              />
+
+
+              <div className='signup-button'>
+                <button type='submit'>Signup</button>
               </div>
-              <div className='login-button'>
-                <button type='submit'>signup</button>
-              </div>
+
             </form>
+            </div>
+
+            <div className='login-container'>
             <form onSubmit={loginUser} className='form-login'>
-              <div className='labels'>
-                <label for='login'>username</label>
+                <label for='username'><FontAwesomeIcon icon={faUser}/></label>
                 <input
                   placeholder='Username'
                   type='text'
-                  name='login'
+                  name='username'
                   value={loginUsername}
                   onChange={(event) => setloginUsername(event.target.value)}
                 />
                 <br></br>
-                <label for='password'>Password:</label>
+                <label for='password'><FontAwesomeIcon icon={faLock}/></label>
                 <input
                   placeholder='Password'
                   type='password'
@@ -159,14 +164,15 @@ function Login(props) {
                   value={loginPassword}
                   onChange={(event) => setloginPassword(event.target.value)}
                 />
-              </div>
+
               <div className='login-button'>
                 <button type='submit'>Login</button>
               </div>
+              
             </form>
+            </div>
           </div>
         </div>
-      </div>
     );
   }
 }
