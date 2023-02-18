@@ -9,7 +9,6 @@ console.log(image)
   return (
     <div className='cards' 
     onClick={() => {
-      console.log("here")
       setShowname(showname);
       setProgress([season, episode]);
       setSingleShowId(singleShowId);
@@ -17,7 +16,8 @@ console.log(image)
       setCurrentView('SingleShow');
     }}>
       <div className='image-container'>
-        <div className='image' style={{background:`url(${image})`}}/>
+        <img src={image} alt=""/>
+        // <div className='image' style={{background:`url(${image})`}}/>
       </div>
       <div className='text-container'>
         <h3>{showname}</h3>

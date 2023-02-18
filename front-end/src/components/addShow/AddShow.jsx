@@ -13,7 +13,7 @@ function AddShow() {
       <AddShowNavbar setSearchList={setSearchList}/>
       <div className='addshow-bottom'>
         <AddShowMain searchList={searchList} setShowSelected={setShowSelected} />
-        {showSelected && <AddShowSideBar showSelected={showSelected}/>}
+        {/*showSelected && <AddShowSideBar showSelected={showSelected}/>*/}
         
       </div>
     </div>
