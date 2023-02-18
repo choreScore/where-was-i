@@ -21,7 +21,6 @@ function App() {
 
   function check() {
     if (localStorage['user_id'] !== 'false') {
-      console.log(localStorage.user_id);
       setLogin(localStorage['user_id']);
       setCurrentView('Homepage');
     }

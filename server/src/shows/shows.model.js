@@ -46,7 +46,27 @@ module.exports = {
       return resultBoolean;
     }
 
+    // CHECK IF USER HAS THIS MOVIE ALREADY
+
+    async function checkUsers(showId, userId) {
+      const checkExisting = await knex(USER_SHOW_TABLE)
+        .select('show_id')
+        .where({
+          show_id: showId,
+          user_id: userId,
+        });
+      const resultBoolean = checkExisting.length > 0 ? true : false;
+      if (resultBoolean) {
+        console.log(checkExisting);
+      }
+      return resultBoolean;
+    }
+
     const checkShow = await checkExists(newShowObject.show_id);
+    const checkUser = await checkUsers(
+      newShowObject.show_id,
+      newShowObject.user_id
+    );
 
     //IF IS NOT ADD IT
     if (!checkShow) {
@@ -56,6 +76,12 @@ module.exports = {
         url: newShowObject.url,
       });
     }
+
+    if (checkUser) {
+      console.log('caught a bad guy')
+      return 'Hey it is already here';
+    }
+
     // ELSE JUST ADD TO USER MOVIE TABLE
     return await knex(USER_SHOW_TABLE).insert({
       user_id: newShowObject.user_id,
@@ -72,7 +98,6 @@ module.exports = {
   },
 
   async updateProgress(progressObject) {
-    console.log(progressObject)
     return await knex(USER_SHOW_TABLE)
       .where({
         show_id: progressObject.show_id,

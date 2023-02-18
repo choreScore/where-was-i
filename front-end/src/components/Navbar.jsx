@@ -9,18 +9,18 @@ function Navbar({ setLogin, homeButtonHandler, addShowHandler }) {
 
   return (
     <div className='navbar-container'>
-      <div className='header'>
+      <div className='header' onClick={homeButtonHandler}>
         <h1>Where Was I?</h1>
       </div>
       <ul>
         <li>
-          <button onClick={handlerLogout}>Logout</button>
+          <button onClick={handlerLogout} className='btn'>Logout</button>
         </li>
         <li>
-          <button onClick={addShowHandler}>Add Show</button>
+          <button onClick={addShowHandler} className='btn'>Add Show</button>
         </li>
         <li>
-          <button onClick={homeButtonHandler}>Home</button>
+          <button onClick={homeButtonHandler} className='btn'>Home</button>
         </li>
       </ul>
     </div>
