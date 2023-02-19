@@ -33,11 +33,33 @@ function Update({ deleteButton, setDeleteButton, showname, singleShowId, login }
 
     if (deleteButton === true){
         return(
-            <div className='popup'>
-                <h1>{showname}: Delete Show?</h1>
-                <button onClick={deleteShow}>Delete</button>
-                <button onClick={goBack}>Cancel</button>
-        </div>
+            <div>
+                <h3>Are you sure you want to delete?</h3>
+            </div>
+        //     <div>
+        //     <div cplassName='show-text-container'>
+        //       <h1>{showname}</h1>
+        //       <h2>Progress: {progressText}</h2>
+        //       <p>{showInfo.overview}</p>
+        //     </div>
+        //     <div className='button-container'>
+        //       <button onClick={handleProgressBtn} className='btn'>
+        //         Update Progress
+        //       </button>
+        //       <button onClick={handleDeleteBtn} className='btn delete-btn'>
+        //         Delete Show
+        //       </button>
+        //     </div>
+            
+
+            
+        // //     <div className='popup'>
+        // //         <h1>{showname}: Delete Show?</h1>
+        // //         <button onClick={deleteShow}>Delete</button>
+        // //         <button onClick={goBack}>Cancel</button>
+        // // </div>
+
+        
         )}
 
     else {
