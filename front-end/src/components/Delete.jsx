@@ -42,8 +42,5 @@ function Update({ deleteButton, setDeleteButton, showname, singleShowId, login, 
         )
     }
 
-
-
-
 export default Update;
 
