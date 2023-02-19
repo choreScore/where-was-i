@@ -98,29 +98,6 @@ function AddShowSideBar(props) {
             required
             onChange={(event) => setpisodeSelected(event.target.value)}
           />
-
-          {/*<select name='season' id='season-select'>
-            {showInfo &&
-              showInfo.seasons.map((each, index) => {
-                if (index !== 0) {
-                  return (
-                    <option key={index} value={index} onClick={handleEpisode}>
-                      {index}
-                    </option>
-                  );
-                }
-              })}
-          </select>
-          <select name='episodes' id='episode-select'>
-            {showInfo &&
-              episodesPerSeason.map((each) => {
-                return (
-                  <option key={each} value={each} onClick={recordEpisode}>
-                    {each}
-                  </option>
-                );
-              })}
-          </select>*/}
           <button type='submit' className='btn'>
             Add show!
           </button>
