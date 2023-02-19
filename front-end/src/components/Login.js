@@ -107,7 +107,7 @@ function Login(props) {
         <div className="form-section">
           <div className="login">
             <div className="image-container">
-              <img src={require('../test-image/background.png')} alt="" />
+              <img src={require('../images/background.png')} alt="" />
             </div>
             <div className="login-container">
               <div className="login-title">
