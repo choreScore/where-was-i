@@ -47,7 +47,7 @@ function AddShowSideBar(props) {
       url: `https://image.tmdb.org/t/p/original${props.showSelected.image}`,
     };
 
-    await fetch('http://localhost:4000/user/shows', {
+    await fetch('https://where-was-i-show-tracker.onrender.com/user/shows', {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
