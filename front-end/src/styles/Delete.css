@@ -1,0 +1,9 @@
+
+.delete-btn-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 80%;
+    margin-left: 40px;
+    margin-top: 10px;
+}

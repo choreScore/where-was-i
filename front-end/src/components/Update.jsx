@@ -39,9 +39,10 @@ function Update({ progressButton, setProgressButton, showname, login, singleShow
 
 
     return(
-        <div className='update-container'>
+        <div className='update'>
             <br></br>
             <h3>Update Progress</h3>
+        <div className='update-container'>
             <form>
                 <label>Season</label>
                 <input 
@@ -59,8 +60,11 @@ function Update({ progressButton, setProgressButton, showname, login, singleShow
                     onChange={(event) => setEpisodeSelect2(event.target.value)}
                 />
             </form>
+            </div>
+            <div className='update-btn-container'>
             <button onClick={updateProgress} className='btn'>Update</button>
             <button onClick={goBack} className='btn'>Cancel</button>
+            </div>
       </div>
     )
 }

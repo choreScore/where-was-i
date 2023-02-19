@@ -25,7 +25,7 @@ function MoviePoster({
       }}
     >
       <div className='image-home-container'>
-        <img src={image} alt='' />
+        <img src={image} alt='tv poster' />
       </div>
       <div className='text-home-container'>
         <h3>{showname}</h3>
