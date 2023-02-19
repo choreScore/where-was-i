@@ -16,7 +16,7 @@ function Homepage({
   useEffect(() => {
     const getShows = async () => {
       let shows = await fetch(
-        `https://where-was-i-server.onrender.com/user/shows?user_id=${login}`
+        `http://localhost:4000/user/shows?user_id=${login}`
       );
       const parsed = await shows.json();
       setShowList(parsed);

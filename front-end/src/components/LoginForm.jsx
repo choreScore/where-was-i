@@ -29,7 +29,7 @@ function LoginForm({
   async function loginUser(e) {
     e.preventDefault();
     let email = await fetch(
-      `https://where-was-i-server.onrender.com/user?username=${loginUsername}`
+      `http://localhost:4000/user?username=${loginUsername}`
     );
     let data = await email.json();
     if (data.length === 0) {

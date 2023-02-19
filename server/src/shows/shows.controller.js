@@ -30,8 +30,6 @@ module.exports = {
     res.status(201).send('Update Complete');
   },
   async deleteShow(req, res) {
-    console.log(req.body)
-
     // need to recieve a query like ./user/shows?user_id=3&show_id=3
     // showsModel.deleteShow();
     await showsModel.deleteShow(req.query.show_id, req.query.user_id);

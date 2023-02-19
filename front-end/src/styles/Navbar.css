@@ -20,10 +20,28 @@
   cursor: pointer;
 }
 
-ul {
+.navbar-container ul {
   list-style-type: none;
   display: flex;
   align-items: center;
   flex-direction: row-reverse;
   margin-right: 20px;
+}
+
+
+@media (max-width: 600px)  {
+  .navbar-container {
+    flex-direction: column;
+    justify-content: center;
+    height: 140px;
+  }
+  .header {
+    margin-left: 0px;
+    padding: 0px;
+  }
+
+.navbar-container ul {
+  margin-right: 0px;
+}
+
 }

@@ -1,35 +1,35 @@
 .update-container input:focus {
-    outline: none;
-  }
-  
+  outline: none;
+}
+
 .update-container input {
-    text-align: center;
-    height: 30px;
-    outline: none;
-    border: none;
-    border-radius: 4px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-  }
+  text-align: center;
+  height: 30px;
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
 
-
-.update-container label{
-    width: 5rem;
-    display: inline-block;
+.update-container label {
+  width: 5rem;
+  display: inline-block;
 }
 
 .update-container {
-    margin-left: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-  }
-  
-.update-btn-container {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 80%;
-    margin-left: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 20px;
 }
+
+.update-btn-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 30px 0px;
+}
+
+
