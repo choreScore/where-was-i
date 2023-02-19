@@ -11,7 +11,7 @@ function Login({ setLogin, setCurrentView, setUserInfo }) {
   const [loginPassword, setloginPassword] = useState('');
   const [loginUsername, setloginUsername] = useState('');
   const [isSignup, setIsSignUp] = useState(false);
-
+  
   return (
     <div className='login-signup-container'>
       <div className='login-card'>
@@ -37,32 +37,5 @@ function Login({ setLogin, setCurrentView, setUserInfo }) {
     </div>
   );
 }
-/*if (props.login === 'false') {
-    if (change === 'true') {
-      return (
-          
-        </div>
-      );
-    }
-    if (change === 'false') {
-      return (
-        <div className='login-signup-container'>
-          <div className='login-card'>
-            <div className='image-login-container'>
-              <img src={require('../images/background.png')} alt='' />
-            </div>
-
-            <div className='form-login-container'>
-              <div className='login-title'>
-                <h2>Where Was I?</h2>
-                <h3>Welcome back!</h3>
-              </div>
-              <Signup setChangeIt={setChangeIt} />
-            </div>
-          </div>
-        </div>
-      );
-    }
-  }*/
 
 export default Login;
