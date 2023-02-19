@@ -29,7 +29,7 @@ function LoginForm({
   async function loginUser(e) {
     e.preventDefault();
     let email = await fetch(
-      `http://localhost:4000/user?username=${loginUsername}`
+      `https://where-was-i-server.onrender.com/user?username=${loginUsername}`
     );
     let data = await email.json();
     if (data.length === 0) {
@@ -74,7 +74,6 @@ function LoginForm({
         <h2>Where Was I?</h2>
         <h3>Welcome back!</h3>
         <h3>Login to keep track of your show progress.</h3>
-        
       </div>
       <div className='login-container'>
         <form onSubmit={loginUser} className='form-login'>
