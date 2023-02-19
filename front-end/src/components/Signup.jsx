@@ -29,7 +29,7 @@ function Signup({ setIsSignUp }) {
       .createUserWithEmailAndPassword(auth, loginEmail, createPassword)
       .then(async (userCredential) => {
         var user = userCredential.user;
-        const checkstat = await fetch('http://localhost:4000/user', {
+        const checkstat = await fetch('https://where-was-i-server.onrender.com/user', {
           headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
