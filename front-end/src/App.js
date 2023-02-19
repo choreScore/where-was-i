@@ -39,7 +39,22 @@ function App() {
         );
       case 'SingleShow':
         return (
-          <div className='single-show'>
+          <>
+            <div className='Homepage'>
+              <Homepage
+                login={login}
+                setLogin={setLogin}
+                setCurrentView={setCurrentView}
+                currentView={currentView}
+                userInfo={userInfo}
+                setUserInfo={setUserInfo}
+                setShowname={setShowname}
+                setProgress={setProgress}
+                setSingleShowId={setSingleShowId}
+                setShowImage={setShowImage}
+              />
+            </div>
+
             <Show
               currentView={currentView}
               showname={showname}
@@ -47,8 +62,9 @@ function App() {
               login={login}
               singleShowId={singleShowId}
               showImage={showImage}
+              setCurrentView={setCurrentView}
             />
-          </div>
+          </>
         );
       case 'Homepage':
         return (
