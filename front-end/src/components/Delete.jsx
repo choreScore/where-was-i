@@ -19,7 +19,7 @@ function Update({ deleteButton, setDeleteButton, showname, singleShowId, login, 
         }
         const query = 
     
-    await fetch('http://localhost:4000/user/shows?user_id='+ login + '&show_id=' + singleShowId, {
+    await fetch('https://where-was-i-server.onrender.com/user/shows?user_id='+ login + '&show_id=' + singleShowId, {
         headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
