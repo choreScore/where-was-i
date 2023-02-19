@@ -10,7 +10,8 @@ That's it really. Although iOS defaults to .MOV for recordings you can also use 
 
 Check out the demo project for a quick example of how Where was I?! works. After you log in all your shows will be displayed, and all you have to do is select the show that you were watching last to check your progress, just like that:
 
-![NSGIF](https://dl.dropboxusercontent.com/s/p02c6l7rzk6mf6m/NSGIF-HT.gif?dl=0)
+![NSGIF](https://raw.githubusercontent.com/cc29-greenfield/where-was-i/dev/front-end/src/images/Peek%202023-02-19%2010-31.gif)
+
 ## Todo
 - [ ] Render Deployment
   - [ ] Project side 
