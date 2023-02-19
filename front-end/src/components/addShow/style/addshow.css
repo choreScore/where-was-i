@@ -58,6 +58,8 @@
   box-shadow: black 8px 5px 15px;
   background-color: #E99700;
   padding: 20px;
+  font-size: 12px;
+  text-align: center;
 }
 
 .form-search-container {

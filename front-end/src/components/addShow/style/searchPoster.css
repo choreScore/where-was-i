@@ -23,12 +23,15 @@
 }
 
 .search-text-container {
-  overflow:auto;
+  overflow: auto;
   text-align: center;
   height: 15%;
   display: flex;
   margin-top: 5px;
   justify-content: center;
+  align-items: center;
+  font-family: 'Roboto Condensed', sans-serif;
+  color: black;
 }
 
 .search-cards:hover {

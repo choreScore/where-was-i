@@ -29,6 +29,9 @@
   display: flex;
   margin-top: 5px;
   justify-content: center;
+  align-items: center;
+  font-family: 'Roboto Condensed', sans-serif;
+  color: black;
 }
 
 .cards:hover {
