@@ -1,15 +1,7 @@
-/* body { */
-/*     background-color: rgb(58, 58, 58); */
-/* } */
-/**/
-/**/
-/* .header{ */
-/*     max-width: 100%; */
-/*     background-color: rgba(255, 166, 0, 0.789); */
-/*     color: black; */
-/*     margin-top: -1rem; */
-/*     padding: 1rem */
-/* } */
+.Homepage {
+  background-color: #2E353E;
+  height: 100%;
+}
 
 .homepage-card-container {
   display: grid;

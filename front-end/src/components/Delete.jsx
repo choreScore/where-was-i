@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Show from './Show'
 import '../styles/Show.css';
-import '../styles/Update.css';
+import '../styles/Delete.css';
 
 function Update({ deleteButton, setDeleteButton, showname, singleShowId, login, setDefaultView, setCurrentView }){
 
@@ -32,16 +32,18 @@ function Update({ deleteButton, setDeleteButton, showname, singleShowId, login, 
     }
 
 
-    if (deleteButton === true){
-        return(
-            <div>
-                <br></br>
-                <h3>Are you sure you want to delete?</h3>
-                <button onClick={deleteShow} className='btn delete-btn'>Yes</button>
-                <button onClick={goBack} className='btn'>Cancel</button>
+    return(
+        <div className='delete-container'>
+            <br></br>
+            <h3>Are you sure you want to delete this show?</h3>
+            <div className='delete-btn-container'>
+            <button onClick={deleteShow} className='btn delete-btn'>Yes</button>
+            <button onClick={goBack} className='btn'>Cancel</button>
             </div>
-        )}
-}
+        </div>
+
+        )
+    }
 
 export default Update;
 
