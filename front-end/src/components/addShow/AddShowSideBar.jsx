@@ -76,7 +76,7 @@ function AddShowSideBar(props) {
           onClick={closeButton}
         />
         <form id='update-form' onSubmit={updateDatabase}>
-          <p>In which season are you now?</p>
+          <p>What season are you watching?</p>
           <input
             className='input-addnew'
             type='text'
@@ -87,7 +87,7 @@ function AddShowSideBar(props) {
             required
             onChange={(event) => setSeasonSelectd(event.target.value)}
           />
-          <p>Until which episode have watched the show?</p>
+          <p>What episode are you watching?</p>
           <input
             className='input-addnew'
             type='text'
