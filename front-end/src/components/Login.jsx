@@ -33,7 +33,7 @@ function Login(props) {
   async function loginUser(e) {
     e.preventDefault();
     let email = await fetch(
-      `https://where-was-i-show-tracker.onrender.com/user?username=${loginUsername}`
+      `https://where-was-i-server.onrender.com/user?username=${loginUsername}`
     );
     let data = await email.json();
     if(data.length === 0){
