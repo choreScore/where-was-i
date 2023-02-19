@@ -12,7 +12,7 @@ function Homepage({ login, currentView, setCurrentView, setShowname, setProgress
       );
       const parsed = await shows.json();
       setShowList(parsed);
-      console.log(shows);
+      console.log(parsed);
     };
      
     getShows();
@@ -33,7 +33,8 @@ function Homepage({ login, currentView, setCurrentView, setShowname, setProgress
             setShowname={setShowname} 
             setCurrentView={setCurrentView}
             setProgress={setProgress}
-            setSingleShowId={setSingleShowId}/>
+            setSingleShowId={setSingleShowId}
+            image ={show.image}/>
           );
         })}
       </div>

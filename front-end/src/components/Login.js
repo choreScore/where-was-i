@@ -2,6 +2,7 @@ import { useState, useEffect} from 'react';
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import Homepage from './Homepage';
 import '../styles/Login.css';
+import Swal from 'sweetalert2';
 const firebase = require('firebase/app');
 const fire = require('firebase/auth');
 
@@ -41,13 +42,17 @@ function Login(props) {
             username: createUsername,
             email: user.email,
           }),
-          
         });
+        Swal.fire('Good job you can login')
       })
       .catch((error) => {
         var errorCode = error.code;
         var errorMessage = error.message;
-        window.alert(errorMessage);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: `${errorMessage}`,
+        })
       });
       const node= document.getElementsByClassName("user1");
      node[0].value="";
@@ -56,7 +61,6 @@ function Login(props) {
      setCreatePassword('');
      setloginEmail('');
      setCreateUsername('');
-     window.alert("you can login");
   }
 
   async function loginUser(e) {
@@ -81,8 +85,11 @@ function Login(props) {
       .catch((error) => {
         var errorCode = error.code;
         var errorMessage = error.message;
-        console.log(errorMessage);
-        window.alert("dont forget your password!!!")
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: `${errorMessage}`,
+        })
       });
   }
 
