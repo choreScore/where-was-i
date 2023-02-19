@@ -23,7 +23,7 @@ function Update({ progressButton, setProgressButton, showname, login, singleShow
                 "url": showImage
         }
 
-        await fetch('http://localhost:4000/user/shows', {
+        await fetch('https://where-was-i-show-tracker.onrender.com/user/shows', {
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',

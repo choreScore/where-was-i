@@ -31,7 +31,7 @@ const app = firebase.initializeApp({
         .createUserWithEmailAndPassword(auth, loginEmail, createPassword)
         .then(async (userCredential) => {
           var user = userCredential.user;
-          const checkstat = await fetch('http://localhost:4000/user', {
+          const checkstat = await fetch('https://where-was-i-show-tracker.onrender.com/user', {
             headers: {
               Accept: 'application/json',
               'Content-Type': 'application/json',
