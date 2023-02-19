@@ -73,6 +73,8 @@ function LoginForm({
       <div className='login-title'>
         <h2>Where Was I?</h2>
         <h3>Welcome back!</h3>
+        <h3>Login to keep track of your show progress.</h3>
+        
       </div>
       <div className='login-container'>
         <form onSubmit={loginUser} className='form-login'>

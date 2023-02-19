@@ -43,3 +43,75 @@
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
 }
+
+.login-card input {
+    text-align: center;
+    height: 30px;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    width: 80%;
+}
+
+.login-card label{
+    width: 2rem;
+    display: inline-block;
+}
+
+.login-title{
+    text-align: center;
+}
+
+.login-title h2{
+    font-size: 60px;
+}
+
+.login-title h3{
+    font-size: 20px;
+}
+
+.signup-container h2{
+    font-size: 60px;
+}
+
+.signup-container h3{
+    font-size: 20px;
+}
+
+.login-btn-field {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 50%;
+    margin-left: 25%;
+}
+
+.form-signup input {
+    text-align: center;
+    height: 30px;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    width: 50%;
+}
+
+.form-signup label{
+    width: 2rem;
+    display: inline-block;
+}
+
+
+.signup-container{
+    text-align: center;
+}
+
+.btn-field {
+    display: flex;
+    align-items: center;
+    margin-left: 40%;
+}
+

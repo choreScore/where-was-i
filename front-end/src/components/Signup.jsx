@@ -66,6 +66,8 @@ function Signup({ setIsSignUp }) {
 
   return (
     <div className='signup-container'>
+      <h2>Signup for Where Was I?</h2>
+      <h3>Keep track of all your TV show progress in one place.</h3>
       <form onSubmit={createUser} className='form-signup'>
         <div className='user-field'>
           <label for='username'>
