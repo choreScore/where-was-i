@@ -64,6 +64,8 @@ function Show({
         deleteButton={deleteButton}
         setDeleteButton={setDeleteButton}
         showname={showname}
+        login={login}
+        singleShowId={singleShowId}
       />
     );
   } else {
