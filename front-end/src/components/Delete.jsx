@@ -32,16 +32,17 @@ function Update({ deleteButton, setDeleteButton, showname, singleShowId, login, 
     }
 
 
+    return(
+        <div>
+            <br></br>
+            <h3>Are you sure you want to delete?</h3>
+            <button onClick={deleteShow} className='btn delete-btn'>Yes</button>
+            <button onClick={goBack} className='btn'>Cancel</button>
+        </div>
+        )
+    }
 
-return(
-    <div>
-        <br></br>
-        <h3>Are you sure you want to delete?</h3>
-        <button onClick={deleteShow} className='btn delete-btn'>Yes</button>
-        <button onClick={goBack} className='btn'>Cancel</button>
-    </div>
-    )
-}
+
 
 
 export default Update;
