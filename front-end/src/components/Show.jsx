@@ -35,12 +35,13 @@ function Show({
 
   function handleProgressBtn(e) {
     e.preventDefault();
-
+    setDefaultView(false)
     setProgressButton(true);
   }
 
   function handleDeleteBtn(e) {
     e.preventDefault();
+    setDefaultView(false)
     setDeleteButton(true);
   }
 
@@ -82,10 +83,12 @@ return (
           showname={showname}
           login={login}
           singleShowId={singleShowId}
+          setDefaultView={setDefaultView}
+          setCurrentView={setCurrentView}
         />}
   {defaultView === true && 
     <>
-    <p>{showInfo.overview}</p>
+     <p>{showInfo.overview}</p>
             <div className='button-container'>
               <button onClick={handleProgressBtn} className='btn'>
                 Update Progress
