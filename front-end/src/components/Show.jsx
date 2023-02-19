@@ -18,6 +18,7 @@ function Show({
   const [progressButton, setProgressButton] = useState(false);
   const [deleteButton, setDeleteButton] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
+  const [defaultView, setDefaultView] = useState(true);
 
   let progressText = 'Season ' + progress[0] + ', ' + 'Episode ' + progress[1];
 
@@ -34,11 +35,13 @@ function Show({
 
   function handleProgressBtn(e) {
     e.preventDefault();
+    setDefaultView(false)
     setProgressButton(true);
   }
 
   function handleDeleteBtn(e) {
     e.preventDefault();
+    setDefaultView(false)
     setDeleteButton(true);
   }
 
@@ -46,44 +49,46 @@ function Show({
     setCurrentView('Homepage');
   }
 
-  if (progressButton === true) {
-    return (
-      <Update
-        progressButton={progressButton}
-        setProgressButton={setProgressButton}
-        showname={showname}
-        login={login}
-        progress={progress}
-        singleShowId={singleShowId}
-        showImage={showImage}
+return (
+  <div className='single-show'>
+  <div className='single-container'>
+    <div className='images-container'>
+      <img src={showImage} alt='' />
+    </div>
+    <div className='info-container'>
+      <FontAwesomeIcon
+        icon={faXmarkCircle}
+        className='icon-button'
+        onClick={closeButton}
       />
-    );
-  } else if (deleteButton === true) {
-    return (
-      <Delete
-        deleteButton={deleteButton}
-        setDeleteButton={setDeleteButton}
-        showname={showname}
-      />
-    );
-  } else {
-    return (
-      <div className='single-show'>
-        <div className='single-container'>
-          <div className='images-container'>
-            <img src={showImage} alt='' />
-          </div>
-          <div className='info-container'>
-            <FontAwesomeIcon
-              icon={faXmarkCircle}
-              className='icon-button'
-              onClick={closeButton}
-            />
-            <div className='show-text-container'>
-              <h1>{showname}</h1>
-              <h2>Progress: {progressText}</h2>
-              <p>{showInfo.overview}</p>
-            </div>
+    <div className='show-text-container'>
+        <h1>{showname}</h1>
+        <h2>Progress: {progressText}</h2>
+      </div>
+  
+  {progressButton === true && 
+    <Update
+              progressButton={progressButton}
+              setProgressButton={setProgressButton}
+              showname={showname}
+              login={login}
+              progress={progress}
+              singleShowId={singleShowId}
+              showImage={showImage}
+            />}
+  {deleteButton === true && 
+    <Delete
+          deleteButton={deleteButton}
+          setDeleteButton={setDeleteButton}
+          showname={showname}
+          login={login}
+          singleShowId={singleShowId}
+          setDefaultView={setDefaultView}
+          setCurrentView={setCurrentView}
+        />}
+  {defaultView === true && 
+    <>
+     <p>{showInfo.overview}</p>
             <div className='button-container'>
               <button onClick={handleProgressBtn} className='btn'>
                 Update Progress
@@ -92,11 +97,11 @@ function Show({
                 Delete Show
               </button>
             </div>
-          </div>
-        </div>
-      </div>
-    );
+            </>
   }
-}
+  </div>
+  </div>
+  </div>
+)}
 
 export default Show;
