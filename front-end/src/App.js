@@ -1,4 +1,4 @@
-import './App.css';
+import './styles/App.css';
 import { useState, useEffect } from 'react';
 import Login from './components/Login';
 import Homepage from './components/Homepage';
@@ -13,6 +13,7 @@ function App() {
   const [showname, setShowname] = useState('');
   const [progress, setProgress] = useState([]);
   const [singleShowId, setSingleShowId] = useState('');
+  const [showImage, setShowImage] = useState('');
 
   function homeButtonHandler() {
     setCurrentView('Homepage');
@@ -20,7 +21,6 @@ function App() {
 
   function check() {
     if (localStorage['user_id'] !== 'false') {
-      console.log(localStorage.user_id);
       setLogin(localStorage['user_id']);
       setCurrentView('Homepage');
     }
@@ -40,11 +40,13 @@ function App() {
       case 'SingleShow':
         return (
           <div className='single-show'>
-            <Show currentView={currentView} 
-            showname={showname}
-            progress={progress}
-            login={login}
-            singleShowId={singleShowId}
+            <Show
+              currentView={currentView}
+              showname={showname}
+              progress={progress}
+              login={login}
+              singleShowId={singleShowId}
+              showImage={showImage}
             />
           </div>
         );
@@ -61,6 +63,7 @@ function App() {
               setShowname={setShowname}
               setProgress={setProgress}
               setSingleShowId={setSingleShowId}
+              setShowImage={setShowImage}
             />
           </div>
         );
@@ -68,7 +71,7 @@ function App() {
   }
 
   function addShowHandler() {
-    setCurrentView('AddNew')
+    setCurrentView('AddNew');
   }
 
   if (login === 'false') {

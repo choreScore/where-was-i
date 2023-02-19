@@ -10,7 +10,7 @@ describe('Shows tests', () => {
 
   afterEach(async () => {
     await knex('tv_shows')
-      .where('name', showFixture.getShow()[1].showName)
+      .where('name', showFixture.getShow()[1].name)
       .returning('name')
       .del()
       .then(() => {
@@ -54,7 +54,7 @@ describe('Shows tests', () => {
       await showsModel.postNewShow(newShow[1]);
       const shows = await showsModel.getShowList(-5);
       expect(shows[0].showname).to.be.equal('Cowboy Bebop');
-      expect(shows[0].image).to.be.a('string');
+      expect(shows[1].image).to.be.a('string');
     });
   });
 

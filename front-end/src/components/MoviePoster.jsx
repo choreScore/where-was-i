@@ -1,23 +1,33 @@
 import { useEffect } from 'react';
 import '../styles/movie-poster.css';
 
-function MoviePoster({ showname, setShowname, setCurrentView, season, episode, singleShowId, setProgress, setSingleShowId, image }) {
-
-
-
-
+function MoviePoster({
+  showname,
+  setShowname,
+  setCurrentView,
+  season,
+  episode,
+  singleShowId,
+  setProgress,
+  setSingleShowId,
+  setShowImage,
+  image,
+}) {
   return (
-    <div className='cards' 
-    onClick={() => {
-      setShowname(showname);
-      setCurrentView('SingleShow');
-      setProgress([season, episode]);
-      setSingleShowId(singleShowId);
-    }}>
-      <div className='image-container'>
-        <div className='image' style={{background:`url(${image}) center center no-repeat`}}/>
+    <div
+      className='cards'
+      onClick={() => {
+        setShowname(showname);
+        setProgress([season, episode]);
+        setSingleShowId(singleShowId);
+        setShowImage(image);
+        setCurrentView('SingleShow');
+      }}
+    >
+      <div className='image-home-container'>
+        <img src={image} alt='' />
       </div>
-      <div className='text-container'>
+      <div className='text-home-container'>
         <h3>{showname}</h3>
       </div>
     </div>

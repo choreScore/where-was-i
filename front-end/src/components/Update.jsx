@@ -3,41 +3,37 @@ import Show from './Show'
 import '../styles/Show.css';
 import '../styles/Update.css';
 
-function Update({ progressButton, setProgressButton, showname, login, singleShowId, progress}){
+function Update({ progressButton, setProgressButton, showname, login, singleShowId, progress, showImage}){
+    const [episodeSelect2, setEpisodeSelect2] = useState('');
+    const [seasonSelect2, setSeasonSelect2] = useState('');
 
     function goBack(e){
         e.preventDefault();
         setProgressButton(false)
     }
 
-    let requestOption = {
-        method: "PUT",
-        body: {
-            user_id: login,
-            show_id: singleShowId,
-            showname: showname,
-            season: progress[0],
-            episode: progress[1]
-        }
-    }
-
-
-
-    function updateProgress(e){
+    async function updateProgress(e){
         e.preventDefault();
-        let requestOption = {
+        const obj = {
+                "user_id": login,
+                "show_id": singleShowId,
+                "showname": showname,
+                "season": seasonSelect2,
+                "episode": episodeSelect2,
+                "url": showImage
+        }
+
+        await fetch('http://localhost:4000/user/shows', {
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+              },
             method: "PUT",
-            body: {
-                user_id: login,
-                show_id: singleShowId,
-                showname: showname,
-                season: progress[0],
-                episode: progress[1],
-                image: 'url'
+            body: JSON.stringify(obj)
             }
-        };
-        fetch('http://localhost:4000/user/shows', requestOption);
+        )
     }
+        
 
 
 if (progressButton === true){
@@ -48,19 +44,25 @@ if (progressButton === true){
                 <label>Season</label>
                 <input 
                     type="number"
-                    name="season">
-                </input>
+                    name="season"
+                    value={seasonSelect2}
+                    onChange={(event) => setSeasonSelect2(event.target.value)}
+                    />
                 <br></br>
                 <label>Episode</label>
                 <input 
                     type="number"
-                    name="Episode">
-                </input>
+                    name="Episode"
+                    value={episodeSelect2}
+                    onChange={(event) => setEpisodeSelect2(event.target.value)}
+                />
             </form>
             <button onClick={updateProgress}>Update</button>
             <button onClick={goBack}>Cancel</button>
       </div>
     )}
+
+
 
 else {
     return (

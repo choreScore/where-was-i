@@ -1,21 +1,30 @@
-body {
-    background-color: rgb(58, 58, 58);
+.navbar-container {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 166, 0, 0.789);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: black 0px 2px 10px -5px;
 }
 
-.header{
-    max-width: 100%;
-    background-color: rgba(255, 166, 0, 0.789);
-    color: black;
-    margin-top: -1rem;
-    padding: 1rem;
+.header {
+  padding: 10px;
+  margin-left: 20px;
+  font-family: 'Permanent Marker', cursive;
+  color:#1d5047; 
+  text-shadow: black 3px 4px 1.5px;
 }
 
-.buttons{
-    float: right;
-    
+.header:hover {
+  cursor: pointer;
 }
 
-.navbar-container{
-    max-width: 100%;
-    display: grid;
+ul {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  margin-right: 20px;
 }
+
