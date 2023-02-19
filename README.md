@@ -9,7 +9,7 @@ Where was I?! is an progress tracker application to help you never forget which 
 
 Check out the demo project for a quick example of how Where was I?! works. After you log in all your shows will be displayed, and all you have to do is select the show that you were watching last to check your progress, just like that:
 
-![WHEREWASI](https://raw.githubusercontent.com/cc29-greenfield/where-was-i/dev/front-end/src/images/Peek%2023-02-20%01-03.gif)
+![WHEREWASI](https://raw.githubusercontent.com/cc29-greenfield/where-was-i/main/front-end/src/images/Peek%202023-02-20%2001-03.gif)
 
 ## Backlog
 - [ ] User Settings.
