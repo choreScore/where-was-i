@@ -39,7 +39,7 @@ function AddShowNavbar({ setSearchList }) {
           placeholder='Search Shows'
           required
         />
-        <button onClick={handleClick}>Search</button>
+        <button onClick={handleClick} className='btn'>Search</button>
       </form>
     </div>
   );

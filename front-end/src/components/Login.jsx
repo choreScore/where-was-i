@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faUser, faLock } from '@fortawesome/free-solid-svg-icons'
-import Homepage from './Homepage';
 import '../styles/Login.css';
+import Swal from 'sweetalert2';
+import Signup from './Signup';
 const firebase = require('firebase/app');
 const fire = require('firebase/auth');
 
@@ -20,52 +21,29 @@ const auth = fire.getAuth(app);
 //getUserId from Firebase and pass to App
 
 function Login(props) {
-  const [loginEmail, setloginEmail] = useState('');
   const [loginPassword, setloginPassword] = useState('');
   const [loginUsername, setloginUsername] = useState('');
-  const [createPassword, setCreatePassword] = useState('');
-  const [createUsername, setCreateUsername] = useState('');
+  const [change, setChangeIt]=useState('true');
 
-  function createUser(e) {
+  
+  function changeit(e){
     e.preventDefault();
-    fire
-      .createUserWithEmailAndPassword(auth, loginEmail, createPassword)
-      .then(async (userCredential) => {
-        var user = userCredential.user;
-        const checkstat = await fetch('http://localhost:4000/user', {
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-          },
-          method: 'POST',
-          body: JSON.stringify({
-            auth_token: user.uid,
-            username: createUsername,
-            email: user.email,
-          }),
-        });
-      })
-      .catch((error) => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        window.alert(errorMessage);
-      });
-    const node = document.getElementsByClassName('user1');
-    node[0].value = '';
-    node[1].value = '';
-    node[2].value = '';
-    setCreatePassword('');
-    setloginEmail('');
-    setCreateUsername('');
-    window.alert('you can login');
+    setChangeIt('false');
   }
-
   async function loginUser(e) {
     e.preventDefault();
     let email = await fetch(
       `http://localhost:4000/user?username=${loginUsername}`
     );
     let data = await email.json();
+    if(data.length === 0){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: `username does not exist`,
+      })
+    }
+    else{
     fire
       .signInWithEmailAndPassword(auth, data[0].email, loginPassword)
       .then((userCredential) => {
@@ -82,12 +60,17 @@ function Login(props) {
       .catch((error) => {
         var errorCode = error.code;
         var errorMessage = error.message;
-        console.log(errorMessage);
-        window.alert('dont forget your password!!!');
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: `${errorMessage}`,
+        })
       });
+    }
   }
 
   if (props.login === 'false') {
+    if(change==='true'){
     return (
       <div className='login-signup-container'>
 
@@ -102,48 +85,6 @@ function Login(props) {
         
             </h3>
           </div>
-
-          <div className='signup-container'>
-            <form onSubmit={createUser} className='form-signup'>
-              <label for='username'><FontAwesomeIcon icon={faUser}/></label>
-              <input
-                className='user1'
-                placeholder='Username'
-                type='text'
-                name='username'
-                value={createUsername}
-                onChange={(event) => setCreateUsername(event.target.value)}
-              />
-              <br></br>
-
-              <label for='email'> <FontAwesomeIcon icon={faEnvelope}/></label>
-              <input
-                className='user1'
-                placeholder='Email'
-                type='text'
-                name='email'
-                value={loginEmail}
-                onChange={(event) => setloginEmail(event.target.value)}
-              />
-              <br></br>
-
-              <label for='password'><FontAwesomeIcon icon={faLock}/></label>
-              <input
-                className='user1'
-                placeholder='Password'
-                type='password'
-                name='password'
-                value={createPassword}
-                onChange={(event) => setCreatePassword(event.target.value)}
-              />
-
-
-              <div className='signup-button'>
-                <button type='submit'>Signup</button>
-              </div>
-
-            </form>
-            </div>
 
             <div className='login-container'>
             <form onSubmit={loginUser} className='form-login'>
@@ -170,10 +111,32 @@ function Login(props) {
               </div>
               
             </form>
+            <div className='login-button'>
+                <button className='btn' onClick={(event)=>changeit(event)}>Signup</button>
+              </div>
             </div>
           </div>
         </div>
-    );
+    )}
+    if(change === 'false'){
+      return( 
+        <div className='login-signup-container'>
+
+        <div className='image-container'>
+          <img src={require('../images/background.png')} alt='' />
+        </div>
+
+        <div className='form-container'>
+          <div className='login-title'>
+            <h2>Where Was I?</h2>
+            <h3>Welcome back!
+        
+            </h3>
+          </div>
+      <Signup setChangeIt={setChangeIt}/>
+      </div>
+      </div>
+   ) }
   }
 }
 

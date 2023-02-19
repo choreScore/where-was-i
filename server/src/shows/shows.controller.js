@@ -19,7 +19,7 @@ module.exports = {
     };
     */
     await showsModel.postNewShow(req.body);
-    res.status(201).send('New show successfully added.');
+    await res.status(201).send('New show successfully added.');
   },
 
   async updateProgress(req, res) {
