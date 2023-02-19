@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faUser, faLock } from '@fortawesome/free-solid-svg-icons'
 import Homepage from './Homepage';
 import '../styles/Login.css';
+import Swal from 'sweetalert2'
 const firebase = require('firebase/app');
 const fire = require('firebase/auth');
 
@@ -27,6 +28,7 @@ function Login(props) {
   const [createUsername, setCreateUsername] = useState('');
 
   function createUser(e) {
+    let check = true;
     e.preventDefault();
     fire
       .createUserWithEmailAndPassword(auth, loginEmail, createPassword)
@@ -43,12 +45,17 @@ function Login(props) {
             username: createUsername,
             email: user.email,
           }),
-        });
+        }).then(
+          Swal.fire('Good job your account was created you can login'))  
       })
       .catch((error) => {
         var errorCode = error.code;
         var errorMessage = error.message;
-        window.alert(errorMessage);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: `${errorMessage}`,
+        })
       });
     const node = document.getElementsByClassName('user1');
     node[0].value = '';
@@ -57,7 +64,6 @@ function Login(props) {
     setCreatePassword('');
     setloginEmail('');
     setCreateUsername('');
-    window.alert('you can login');
   }
 
   async function loginUser(e) {
@@ -82,8 +88,11 @@ function Login(props) {
       .catch((error) => {
         var errorCode = error.code;
         var errorMessage = error.message;
-        console.log(errorMessage);
-        window.alert('dont forget your password!!!');
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: `${errorMessage}`,
+        })
       });
   }
 
