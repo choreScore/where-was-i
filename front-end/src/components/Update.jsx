@@ -3,13 +3,14 @@ import Show from './Show'
 import '../styles/Show.css';
 import '../styles/Update.css';
 
-function Update({ progressButton, setProgressButton, showname, login, singleShowId, progress, showImage}){
+function Update({ progressButton, setProgressButton, showname, login, singleShowId, progress, showImage, setDefaultView, setCurrentView}){
     const [episodeSelect2, setEpisodeSelect2] = useState('');
     const [seasonSelect2, setSeasonSelect2] = useState('');
 
     function goBack(e){
         e.preventDefault();
-        setProgressButton(false)
+        setProgressButton(false);
+        setDefaultView(true);
     }
 
     async function updateProgress(e){
@@ -32,14 +33,16 @@ function Update({ progressButton, setProgressButton, showname, login, singleShow
             body: JSON.stringify(obj)
             }
         )
+        setCurrentView('Homepage')
     }
         
 
 
-if (progressButton === true){
     return(
-        <div className='popup'>
-            <h1>{showname}: Update Progress</h1>
+        <div className='update'>
+            <br></br>
+            <h3>Update Progress</h3>
+        <div className='update-container'>
             <form>
                 <label>Season</label>
                 <input 
@@ -57,20 +60,16 @@ if (progressButton === true){
                     onChange={(event) => setEpisodeSelect2(event.target.value)}
                 />
             </form>
-            <button onClick={updateProgress}>Update</button>
-            <button onClick={goBack}>Cancel</button>
+            </div>
+            <div className='update-btn-container'>
+            <button onClick={updateProgress} className='btn'>Update</button>
+            <button onClick={goBack} className='btn'>Cancel</button>
+            </div>
       </div>
-    )}
-
-
-
-else {
-    return (
-        <Show 
-        progressButton={progressButton}/>
     )
 }
-}
+
+
 
 export default Update;
 

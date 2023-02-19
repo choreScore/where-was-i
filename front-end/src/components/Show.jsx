@@ -75,6 +75,8 @@ return (
               progress={progress}
               singleShowId={singleShowId}
               showImage={showImage}
+              setDefaultView={setDefaultView}
+              setCurrentView={setCurrentView}
             />}
   {deleteButton === true && 
     <Delete
