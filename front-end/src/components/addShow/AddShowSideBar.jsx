@@ -1,22 +1,42 @@
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmarkCircle } from "@fortawesome/free-solid-svg-icons";
+// import "./style/addshowsidebar.css";
 
 function AddShowSideBar(props) {
   const [seasonSelect, setSeasonSelectd] = useState("");
   const [episodeSelect, setEpisodeSelected] = useState("");
   const [showInfo, setShowInfo] = useState(false);
-  const [episodesPerSeason, setEpisodesPerSeason] = useState();
+  const [seasonsAndEpisodes, setSeasonsAndEpisodes] = useState([]);
 
   useEffect(() => {
     getShowInfo(props.showSelected.show_id);
   }, [props.showSelected]);
+
+  useEffect(() => {
+    if (showInfo) {
+      handleSeasonsAndEpisodes();
+    }
+  }, [showInfo]);
 
   async function getShowInfo(showId) {
     const data = await fetch(
       `https://api.themoviedb.org/3/tv/${showId}?api_key=22232a34b1256a41ee95dfdb04aa1810`
     ).then((data) => data.json());
     setShowInfo(data);
+  }
+
+  function handleSeasonsAndEpisodes() {
+    let seasonCounter = 0;
+    const countSeasonsAndEpisodes = {};
+    showInfo.seasons.map((season) => {
+      if (season.name != "Specials") {
+        seasonCounter++;
+        countSeasonsAndEpisodes[seasonCounter] = season.episode_count;
+      }
+    });
+    setSeasonsAndEpisodes(countSeasonsAndEpisodes);
+    console.log(seasonsAndEpisodes);
   }
 
   // function handleEpisode(e) {
@@ -65,7 +85,6 @@ function AddShowSideBar(props) {
     props.setShowSelected(false);
   }
 
-  console.log(showInfo);
   return (
     <div className="addshow-side">
       <div className="images-search-container">
@@ -79,6 +98,35 @@ function AddShowSideBar(props) {
           className="icon-button"
           onClick={closeButton}
         />
+        {showInfo && (
+          <div className="selectProgress">
+            <select
+              onChange={(event) => {
+                setSeasonSelectd(event.target.value);
+              }}
+            >
+              <option selected="true" disabled="disabled">
+                Season
+              </option>
+              {seasonsAndEpisodes &&
+                Object.keys(seasonsAndEpisodes).map((season) => {
+                  return <option value={season}>{season}</option>;
+                })}
+            </select>
+            <select
+              onChange={(event) => setEpisodeSelected(event.target.value)}
+            >
+              {" "}
+              <option selected="true" disabled="disabled">
+                Episode
+              </option>
+              {setSeasonSelectd &&
+                [...Array(seasonsAndEpisodes[seasonSelect])].map((e, i) => {
+                  return <option value={i + 1}>{i + 1}</option>;
+                })}
+            </select>
+          </div>
+        )}
         <form id="update-form" onSubmit={updateDatabase}>
           <p>What season are you watching?</p>
           <input
@@ -105,21 +153,6 @@ function AddShowSideBar(props) {
           <button type="submit" className="btn">
             Add show!
           </button>
-          {showInfo && (
-            <div>
-              <h4>Season</h4>
-              <select
-                onChange={(e) => {
-                  // handleEpisode(e);
-                  console.log(e.target.value, showInfo.seasons[e.target.value]);
-                }}
-              >
-                {showInfo.seasons.map((x, i) => {
-                  return <option value={i + 1}>{i + 1}</option>;
-                })}
-              </select>
-            </div>
-          )}
         </form>
       </div>
     </div>
