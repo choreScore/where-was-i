@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faXmarkCircle } from '@fortawesome/free-solid-svg-icons';
+import { useEffect, useRef, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmarkCircle } from "@fortawesome/free-solid-svg-icons";
 
 function AddShowSideBar(props) {
-  const [seasonSelect, setSeasonSelectd] = useState('');
-  const [episodeSelect, setpisodeSelected] = useState('');
+  const [seasonSelect, setSeasonSelectd] = useState("");
+  const [episodeSelect, setpisodeSelected] = useState("");
   // const [showInfo, setShowInfo] = useState(false);
   // const [episodesPerSeason, setEpisodesPerSeason] = useState([]);
 
@@ -47,12 +47,12 @@ function AddShowSideBar(props) {
       url: `https://image.tmdb.org/t/p/original${props.showSelected.image}`,
     };
 
-    await fetch('https://where-was-i-server.onrender.com/user/shows', {
+    await fetch("http://localhost:4000/user/shows", {
       headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
-      method: 'POST',
+      method: "POST",
       body: JSON.stringify(obj),
     });
     props.setShowSelected(false);
@@ -63,42 +63,42 @@ function AddShowSideBar(props) {
   }
 
   return (
-    <div className='addshow-side'>
-      <div className='images-search-container'>
+    <div className="addshow-side">
+      <div className="images-search-container">
         <img
           src={`https://image.tmdb.org/t/p/original${props.showSelected.image}`}
         />
       </div>
-      <div className='form-search-container'>
+      <div className="form-search-container">
         <FontAwesomeIcon
           icon={faXmarkCircle}
-          className='icon-button'
+          className="icon-button"
           onClick={closeButton}
         />
-        <form id='update-form' onSubmit={updateDatabase}>
+        <form id="update-form" onSubmit={updateDatabase}>
           <p>What season are you watching?</p>
           <input
-            className='input-addnew'
-            type='text'
-            name='Season'
-            placeholder='Season Number, Ex 1'
+            className="input-addnew"
+            type="text"
+            name="Season"
+            placeholder="Season Number, Ex 1"
             value={seasonSelect}
-            pattern='[0-9]+'
+            pattern="[0-9]+"
             required
             onChange={(event) => setSeasonSelectd(event.target.value)}
           />
           <p>What episode are you watching?</p>
           <input
-            className='input-addnew'
-            type='text'
-            name='Episode'
-            placeholder='Episode Number, Ex 12'
-            pattern='[0-9]+'
+            className="input-addnew"
+            type="text"
+            name="Episode"
+            placeholder="Episode Number, Ex 12"
+            pattern="[0-9]+"
             value={episodeSelect}
             required
             onChange={(event) => setpisodeSelected(event.target.value)}
           />
-          <button type='submit' className='btn'>
+          <button type="submit" className="btn">
             Add show!
           </button>
         </form>
