@@ -1,23 +1,23 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmarkCircle } from "@fortawesome/free-solid-svg-icons";
 
 function AddShowSideBar(props) {
   const [seasonSelect, setSeasonSelectd] = useState("");
-  const [episodeSelect, setpisodeSelected] = useState("");
-  // const [showInfo, setShowInfo] = useState(false);
-  // const [episodesPerSeason, setEpisodesPerSeason] = useState([]);
+  const [episodeSelect, setEpisodeSelected] = useState("");
+  const [showInfo, setShowInfo] = useState(false);
+  const [episodesPerSeason, setEpisodesPerSeason] = useState();
 
-  // useEffect(() => {
-  //   getShowInfo(props.showSelected.show_id);
-  // }, []);
-  //
-  // async function getShowInfo(showId) {
-  //   const data = await fetch(
-  //     `https://api.themoviedb.org/3/tv/${showId}?api_key=22232a34b1256a41ee95dfdb04aa1810`
-  //   ).then((data) => data.json());
-  //   setShowInfo(data);
-  // }
+  useEffect(() => {
+    getShowInfo(props.showSelected.show_id);
+  }, [props.showSelected]);
+
+  async function getShowInfo(showId) {
+    const data = await fetch(
+      `https://api.themoviedb.org/3/tv/${showId}?api_key=22232a34b1256a41ee95dfdb04aa1810`
+    ).then((data) => data.json());
+    setShowInfo(data);
+  }
 
   // function handleEpisode(e) {
   //   const episodeNumber =
@@ -28,13 +28,16 @@ function AddShowSideBar(props) {
   //     arrayOfNumbers.push(i);
   //   }
   //   setEpisodesPerSeason(arrayOfNumbers);
-  //   setSeasonSelectd(episodeNumber)
+  //   setSeasonSelectd(episodeNumber);
+  //   console.log(episodesPerSeason, seasonSelect);
   // }
 
   // function recordEpisode(e) {
-  //   setpisodeSelected(parseInt(e.currentTarget.value))
-  //   console.log(typeof seasonSelect, typeof episodeSelect)
+  //   setEpisodeSelected(parseInt(e.currentTarget.value));
+  //   console.log(typeof seasonSelect, typeof episodeSelect);
   // }
+
+  // --
 
   async function updateDatabase(e) {
     e.preventDefault();
@@ -62,6 +65,7 @@ function AddShowSideBar(props) {
     props.setShowSelected(false);
   }
 
+  console.log(showInfo);
   return (
     <div className="addshow-side">
       <div className="images-search-container">
@@ -96,11 +100,26 @@ function AddShowSideBar(props) {
             pattern="[0-9]+"
             value={episodeSelect}
             required
-            onChange={(event) => setpisodeSelected(event.target.value)}
+            onChange={(event) => setEpisodeSelected(event.target.value)}
           />
           <button type="submit" className="btn">
             Add show!
           </button>
+          {showInfo && (
+            <div>
+              <h4>Season</h4>
+              <select
+                onChange={(e) => {
+                  // handleEpisode(e);
+                  console.log(e.target.value, showInfo.seasons[e.target.value]);
+                }}
+              >
+                {showInfo.seasons.map((x, i) => {
+                  return <option value={i + 1}>{i + 1}</option>;
+                })}
+              </select>
+            </div>
+          )}
         </form>
       </div>
     </div>
