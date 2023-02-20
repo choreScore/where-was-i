@@ -22,6 +22,9 @@ function AddShowNavbar({ setSearchList }) {
         name: show.name,
         show_id: show.id,
         image: show.poster_path,
+        vote_average: show.vote_average, //add by david
+        overview: show.overview, // add by david
+        origin_country: show.origin_country, //add by david
       };
       lastArray.push(showObject);
       return lastArray;
