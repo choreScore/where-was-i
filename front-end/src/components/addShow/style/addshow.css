@@ -127,3 +127,7 @@
   margin-top: 0px;
 }
 }
+.selectProgress select{
+  background-color: #1d5047;
+  color:#E99700;
+}
