@@ -117,7 +117,7 @@ function AddShowNavbar({ setSearchList }) {
         <select
           id="genre"
           name="Genre"
-          className="Genre"
+          className="genre"
           onChange={genreHandleSelect}
         >
           <option value="28">Action</option>
@@ -157,21 +157,23 @@ function AddShowNavbar({ setSearchList }) {
             }, 100);
           }}
         />
-        {suggestions &&
-          suggestions.map(
-            (
-              suggestion,
-              i // changed here too and the line after
-            ) => (
-              <div
-                key={i}
-                className="suggestion"
-                onClick={() => onSuggestHandler(suggestion.name)}
-              >
-                {suggestion.name}
-              </div>
-            )
-          )}
+        <div className="suggestions">
+          {suggestions &&
+            suggestions.map(
+              (
+                suggestion,
+                i // changed here too and the line after
+              ) => (
+                <p
+                  key={i}
+                  className="suggestion"
+                  onClick={() => onSuggestHandler(suggestion.name)}
+                >
+                  {suggestion.name}
+                </p>
+              )
+            )}
+        </div>
         <button onClick={handleClick} className="btn">
           Search
         </button>
