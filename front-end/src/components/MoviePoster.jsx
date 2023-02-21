@@ -1,4 +1,8 @@
+import { faListSquares } from "@fortawesome/free-solid-svg-icons";
 import "../styles/movie-poster.css";
+import Box from "@mui/material/Box";
+import StarIcon from "@mui/icons-material/Star";
+import StarBorderIcon from "@mui/icons-material/StarBorder";
 
 function MoviePoster({
   showname,
@@ -13,6 +17,10 @@ function MoviePoster({
   image,
   personalRank,
 }) {
+  const newPersonalRank = personalRank === null ? false : true;
+  const partialStars = personalRank / 2;
+  const totalRank = 5;
+
   return (
     <div
       className="cards"
@@ -31,7 +39,16 @@ function MoviePoster({
         <h3>{showname}</h3>
       </div>
       <div className="personalRank">
-        <h4>Personal Rank: &#9733;{personalRank}</h4>
+        {newPersonalRank ? (
+          <Box>
+            <h4>Own Ranking : </h4>
+            {[...new Array(totalRank)].map((arr, index) => {
+              return index < partialStars ? <StarIcon /> : <StarBorderIcon />;
+            })}
+          </Box>
+        ) : (
+          <h4>Rate this series! &#9733;</h4>
+        )}
       </div>
     </div>
   );
