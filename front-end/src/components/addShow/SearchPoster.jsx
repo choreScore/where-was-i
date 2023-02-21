@@ -11,8 +11,8 @@ function SearchPoster(props) {
     getCountryFlags();
   }, [props]);
 
-  function getCountryFlags() {
-    const countryFlag = props.show.origin_country[0].toLowerCase();
+  async function getCountryFlags() {
+    const countryFlag = await props.show.origin_country[0].toLowerCase();
     setCountryFlag(countryFlag);
   }
 
