@@ -3,15 +3,6 @@ import { useEffect, useRef, useState } from "react";
 function AddShowNavbar({ setSearchList }) {
   const [showlist, setShowlist] = useState([]);
 
-  getGenre();
-
-  async function getGenre() {
-    const genreData = await fetch(
-      `https://api.themoviedb.org/3/genre/movie/list?api_key=22232a34b1256a41ee95dfdb04aa1810`
-    ).then((genreData) => genreData.json());
-    console.log(genreData);
-  }
-
   async function getShowID(name) {
     const data = await fetch(
       `https://api.themoviedb.org/3/search/tv?api_key=22232a34b1256a41ee95dfdb04aa1810&language=en-US&query=${name}&page=1&include_adult=false`
@@ -19,10 +10,55 @@ function AddShowNavbar({ setSearchList }) {
     await setShowlist(data.results);
   }
 
+  async function getGenre() {
+    const genreData = await fetch(
+      `https://api.themoviedb.org/3/genre/movie/list?api_key=22232a34b1256a41ee95dfdb04aa1810`
+    ).then((genreData) => genreData.json());
+  }
+
+  async function getShowByGenre(genreCode) {
+    const genreFiltered = {};
+    const matchArray = [];
+    const data = await Promise.all([
+      fetch(
+        `https://api.themoviedb.org/3/tv/popular?api_key=22232a34b1256a41ee95dfdb04aa1810&language=en-US&page=1&include_adult=false`
+      ).then((data) => data.json()),
+      fetch(
+        `https://api.themoviedb.org/3/tv/popular?api_key=22232a34b1256a41ee95dfdb04aa1810&language=en-US&page=2&include_adult=false`
+      ).then((data) => data.json()),
+      fetch(
+        `https://api.themoviedb.org/3/tv/popular?api_key=22232a34b1256a41ee95dfdb04aa1810&language=en-US&page=3&include_adult=false`
+      ).then((data) => data.json()),
+      fetch(
+        `https://api.themoviedb.org/3/tv/popular?api_key=22232a34b1256a41ee95dfdb04aa1810&language=en-US&page=4&include_adult=false`
+      ).then((data) => data.json()),
+      fetch(
+        `https://api.themoviedb.org/3/tv/popular?api_key=22232a34b1256a41ee95dfdb04aa1810&language=en-US&page=5&include_adult=false`
+      ).then((data) => data.json()),
+    ]);
+    for (const page of data) {
+      for (let i = 0; i < page.results.length; i++) {
+        if (page.results[i].genre_ids.includes(genreCode) === true) {
+          matchArray.push(page.results[i]);
+        }
+      }
+    }
+    genreFiltered.results = matchArray;
+    await setShowlist(genreFiltered.results);
+  }
+
   const handleClick = (e) => {
     e.preventDefault();
     const searchInput = document.getElementsByClassName("find-show");
     getShowID(searchInput[0].value);
+  };
+
+  const genreHandleClick = (e) => {
+    e.preventDefault();
+    const genreID = [];
+    const genreInput = document.getElementsByClassName("Genre");
+    genreID.push(genreInput[0].value);
+    getShowByGenre(JSON.parse(genreID));
   };
 
   useEffect(() => {
@@ -43,29 +79,29 @@ function AddShowNavbar({ setSearchList }) {
 
   return (
     <div className="addshow-nav">
-      <form action="/">
-        <select id="genre" name="Genre">
-          <option value="Action">Action</option>
-          <option value="Adventure">Adventure</option>
-          <option value="Animation">Animation</option>
-          <option value="Comedy">Comedy</option>
-          <option value="Crime">Crime</option>
-          <option value="Documentary">Documentary</option>
-          <option value="Drama">Drama</option>
-          <option value="Family">Family</option>
-          <option value="Fantasy">Fantasy</option>
-          <option value="History">History</option>
-          <option value="Horror">Horror</option>
-          <option value="Music">Music</option>
-          <option value="Mystery">Mystery</option>
-          <option value="Romance">Romance</option>
-          <option value="Science Fiction">Science Fiction</option>
-          <option value="TV Movie">TV Movie</option>
-          <option value="Thriller">Thriller</option>
-          <option value="War">War</option>
-          <option value="Western">Western</option>
+      <form>
+        <select id="genre" name="Genre" className="Genre">
+          <option value="28">Action</option>
+          <option value="12">Adventure</option>
+          <option value="16">Animation</option>
+          <option value="35">Comedy</option>
+          <option value="80">Crime</option>
+          <option value="99">Documentary</option>
+          <option value="18">Drama</option>
+          <option value="10752">Family</option>
+          <option value="14">Fantasy</option>
+          <option value="36">History</option>
+          <option value="27">Horror</option>
+          <option value="10402">Music</option>
+          <option value="9648">Mystery</option>
+          <option value="10749">Romance</option>
+          <option value="878">Science Fiction</option>
+          <option value="10770">TV Movie</option>
+          <option value="53">Thriller</option>
+          <option value="10752">War</option>
+          <option value="37">Western</option>
         </select>
-        <button onClick={handleClick} className="btn">
+        <button onClick={genreHandleClick} className="btn">
           Genre
         </button>
       </form>
