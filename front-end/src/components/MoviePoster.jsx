@@ -1,4 +1,3 @@
-import { faListSquares } from "@fortawesome/free-solid-svg-icons";
 import "../styles/movie-poster.css";
 import Box from "@mui/material/Box";
 import StarIcon from "@mui/icons-material/Star";

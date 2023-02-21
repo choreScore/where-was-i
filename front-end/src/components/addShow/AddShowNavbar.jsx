@@ -117,7 +117,7 @@ function AddShowNavbar({ setSearchList }) {
         <select
           id="genre"
           name="Genre"
-          className="genre"
+          className="Genre"
           onChange={genreHandleSelect}
         >
           <option value="28">Action</option>
