@@ -115,6 +115,20 @@
   object-fit: contain;
 }
 
+.genre {
+  background-color: #216657;
+  color:#EFDF9D;
+  padding: 5px 0;
+  border: none;
+  border-radius: 3px;
+  font-size: 18px;
+  width: 120px;
+}
+
+.suggestions {
+  position: absolute;
+}
+
 @media (max-width: 700px)  {
 .addshow-side {
   flex-direction: column;
@@ -139,4 +153,16 @@
 
 select:focus{
   outline: none;
+}
+
+.suggestion{
+  background-color: white;
+  cursor: pointer;
+  border-right: 1px black;
+  border-left: 1px black;
+  border-bottom: 1px black;
+}
+
+.suggestion:hover{
+  background-color: gray;
 }

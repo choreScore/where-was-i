@@ -53,7 +53,7 @@ function AddShowNavbar({ setSearchList }) {
     getShowID(searchInput[0].value);
   };
 
-  const genreHandleClick = (e) => {
+  const genreHandleSelect = (e) => {
     e.preventDefault();
     const genreID = [];
     const genreInput = document.getElementsByClassName("Genre");
@@ -77,10 +77,49 @@ function AddShowNavbar({ setSearchList }) {
     setSearchList(showArray);
   }, [showlist]);
 
+  const [titles, setTitles] = useState({});
+  const [text, setText] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
+  const [inputT, setInputT] = useState("");
+  useEffect(() => {
+    const loadTitles = async () => {
+      const data = await fetch(
+        `https://api.themoviedb.org/3/tv/popular?api_key=22232a34b1256a41ee95dfdb04aa1810&language=en-US`
+      ).then((data) => data.json());
+      await setTitles(data.results);
+      console.log("result", data.results);
+    };
+    loadTitles();
+  }, []);
+
+  const onSuggestHandler = (text) => {
+    setText(text);
+    getShowID(text);
+    setInputT(text);
+  };
+
+  const onChangeHandler = (text) => {
+    let matches = [];
+    setInputT(text);
+    if (text.length > 0) {
+      matches = titles.filter((element) => {
+        const regex = new RegExp(`${text}`, "gi");
+        return element.name.match(regex);
+      });
+    }
+    setSuggestions(matches);
+    setText(text);
+  };
+
   return (
     <div className="addshow-nav">
       <form>
-        <select id="genre" name="Genre" className="Genre">
+        <select
+          id="genre"
+          name="Genre"
+          className="genre"
+          onChange={genreHandleSelect}
+        >
           <option value="28">Action</option>
           <option value="12">Adventure</option>
           <option value="16">Animation</option>
@@ -101,9 +140,6 @@ function AddShowNavbar({ setSearchList }) {
           <option value="10752">War</option>
           <option value="37">Western</option>
         </select>
-        <button onClick={genreHandleClick} className="btn">
-          Genre
-        </button>
       </form>
       <form action="/">
         <input
@@ -111,8 +147,33 @@ function AddShowNavbar({ setSearchList }) {
           name="find-show"
           className="find-show"
           placeholder="Search Shows"
+          value={inputT}
           required
+          autocomplete="off"
+          onChange={(e) => onChangeHandler(e.target.value)}
+          onBlur={() => {
+            setTimeout(() => {
+              setSuggestions([]);
+            }, 100);
+          }}
         />
+        <div className="suggestions">
+          {suggestions &&
+            suggestions.map(
+              (
+                suggestion,
+                i // changed here too and the line after
+              ) => (
+                <p
+                  key={i}
+                  className="suggestion"
+                  onClick={() => onSuggestHandler(suggestion.name)}
+                >
+                  {suggestion.name}
+                </p>
+              )
+            )}
+        </div>
         <button onClick={handleClick} className="btn">
           Search
         </button>

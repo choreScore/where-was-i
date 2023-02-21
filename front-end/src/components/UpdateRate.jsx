@@ -47,17 +47,18 @@ function UpdateRate({
       <div className="update-container">
         <form onSubmit={updateProgress}>
           <label>How good is this?</label>
-          <input
-            type="number"
-            name="rank"
-            value={rankValue}
-            max="10"
-            min="0"
-            pattern="[0-9]+"
-            placeholder="Rank: 1 - 10"
-            required
-            onChange={(event) => setRankValue(event.target.value)}
-          />
+          <select onChange={(event) => setRankValue(event.target.value)}>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+          </select>
           <div className="update-btn-container">
             <button type="submit" className="btn">
               Rate!

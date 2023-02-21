@@ -1,10 +1,20 @@
 import "./style/searchPoster.css";
+import { useEffect, useState } from "react";
+
 function SearchPoster(props) {
+  const [countryFlag, setCountryFlag] = useState();
   function sendBack() {
     props.setShowSelected(props.show);
   }
 
-  const countryFlag = props.show.origin_country[0];
+  useEffect(() => {
+    getCountryFlags();
+  }, [props]);
+
+  async function getCountryFlags() {
+    const countryFlag = await props.show.origin_country[0].toLowerCase();
+    setCountryFlag(countryFlag);
+  }
 
   return (
     <div className="search-cards" onClick={sendBack}>
