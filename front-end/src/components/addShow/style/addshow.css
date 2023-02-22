@@ -29,6 +29,7 @@
 .addshow-nav button {
   padding: 6px 10px;
   cursor: pointer;
+  background-color: #216657;
 }
 
 .genre {
