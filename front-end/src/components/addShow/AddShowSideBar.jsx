@@ -79,6 +79,9 @@ function AddShowSideBar(props) {
         />
         <form id="update-form" onSubmit={updateDatabase}>
           {showInfo && (
+            <h3 className="show-name">{showInfo.name.toUpperCase()}</h3>
+          )}
+          {showInfo && (
             <div className="selectProgress">
               <select
                 onChange={(event) => {
@@ -96,7 +99,6 @@ function AddShowSideBar(props) {
               <select
                 onChange={(event) => setEpisodeSelected(event.target.value)}
               >
-                {" "}
                 <option selected="true" disabled="disabled">
                   Episode
                 </option>

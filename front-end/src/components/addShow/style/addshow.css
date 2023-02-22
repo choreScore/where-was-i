@@ -81,6 +81,10 @@
   text-align: center;
 }
 
+.add-show-header {
+  width: 100%;
+}
+
 .form-search-container {
   height: 100%;
   width: 50%;
@@ -146,6 +150,14 @@
   margin-top: 0px;
 }
 }
+
+.show-name {
+  font-size: 20px;
+  font-family: 'Exo 2', sans-serif;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
 .selectProgress select{
   background-color: #151515;
   color:#EFDF9D;
@@ -153,7 +165,7 @@
   border: none;
   border-radius: 3px;
   margin-right: 5px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 select:focus{

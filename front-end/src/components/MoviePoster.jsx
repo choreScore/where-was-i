@@ -39,13 +39,12 @@ function MoviePoster({
       <div className="personalRank">
         {newPersonalRank ? (
           <Box>
-            <h4>Personal Rank: </h4>
             {[...new Array(totalStars)].map((arr, index) => {
               return index < activeStars ? <StarIcon /> : <StarBorderIcon />;
             })}
           </Box>
         ) : (
-          <h4>Set your personal rank!</h4>
+          <h4>Set your personal rank</h4>
         )}
       </div>
     </div>
