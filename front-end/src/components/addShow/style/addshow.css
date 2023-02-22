@@ -7,7 +7,9 @@
 
 .addshow-nav {
   display: flex;
+  align-items: center;
   justify-content: center;
+  gap: 10px;
   background-color: rgba(0, 0, 0, 0.2);
 }
 
@@ -17,17 +19,34 @@
 
 .addshow-nav input {
   text-align: center;
-  height: 30px;
+  padding: 8px 0;
   outline: none;
   border: none;
   border-radius: 4px;
+  margin-bottom: 7px;
 }
 
 .addshow-nav button {
-  padding: 5px 10px;
-  border-radius: 2px;
+  padding: 6px 10px;
   cursor: pointer;
+}
+
+.genre {
+  background-color: #216657;
+  color:#EFDF9D;
+  padding: 5px 0;
   border: none;
+  border-radius: 4px;
+  font-size: 17px;
+  width: 120px;
+}
+
+.genre:hover {
+  background-color: #195044;
+}
+
+.suggestions {
+  position: absolute;
 }
 
 .addshow-bottom {
@@ -115,20 +134,6 @@
   object-fit: contain;
 }
 
-.genre {
-  background-color: #216657;
-  color:#EFDF9D;
-  padding: 5px 0;
-  border: none;
-  border-radius: 3px;
-  font-size: 18px;
-  width: 120px;
-}
-
-.suggestions {
-  position: absolute;
-}
-
 @media (max-width: 700px)  {
 .addshow-side {
   flex-direction: column;
@@ -165,4 +170,23 @@ select:focus{
 
 .suggestion:hover{
   background-color: gray;
+}
+
+
+@media only screen and (max-width: 1000px) {
+  .addshow-main {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .addshow-main {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .addshow-main {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

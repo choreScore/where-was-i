@@ -2,7 +2,7 @@
   background-color: #216657;
   color: #151515;
   box-shadow: 1px 1px 7px 1px rgba(0, 0, 0, 0.621);
-  height: 350px;
+  height: 340px;
   -webkit-transition: all 0.65s ease;
   transition: all 0.65s ease;
   border-radius: 5px;
@@ -23,20 +23,32 @@
 }
 
 .search-text-container {
-  overflow: auto;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   font-family: 'Open Sans', sans-serif;
   color: #EFDF9D;
   font-size: 13px;
   overflow: hidden;
-  height: 40px;
+  height: 50px;
+  gap: 2px;
+  overflow: hidden;
+  font-family: 'Exo 2', sans-serif;
+  text-transform: uppercase;
 }
 
 .search-cards:hover {
   -webkit-transform: scale(1.05, 1.05);
   transform: scale(1.05, 1.05);
   cursor: pointer;
+}
+
+.rating-and-flag {
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+  font-size: 13px;
+  color: #1d1d1d;
 }

@@ -56,7 +56,7 @@ function AddShowNavbar({ setSearchList }) {
   const genreHandleSelect = (e) => {
     e.preventDefault();
     const genreID = [];
-    const genreInput = document.getElementsByClassName("Genre");
+    const genreInput = document.getElementsByClassName("genre");
     genreID.push(genreInput[0].value);
     getShowByGenre(JSON.parse(genreID));
   };
