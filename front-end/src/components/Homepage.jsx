@@ -23,7 +23,7 @@ function Homepage({
     };
     getShows();
   }, []);
-  console.log("personalRankw = ", showList);
+
   return (
     <div className="homepage">
       <div className="homepage-card-container">

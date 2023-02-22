@@ -120,11 +120,11 @@ function Show({
                 <button onClick={handleProgressBtn} className="btn">
                   Update Progress
                 </button>
+                <button onClick={handleRankBtn} className="btn rank-btn">
+                  Rate this Series
+                </button>
                 <button onClick={handleDeleteBtn} className="btn delete-btn">
                   Delete Show
-                </button>
-                <button onClick={handleRankBtn} className="btn rank-btn">
-                  Rate this Series!!
                 </button>
               </div>
             </>

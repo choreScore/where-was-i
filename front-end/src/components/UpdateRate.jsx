@@ -11,7 +11,7 @@ function UpdateRate({
   setDefaultView,
   setCurrentView,
 }) {
-  const [rankValue, setRankValue] = useState("");
+  const [rankValue, setRankValue] = useState(0);
 
   function goBack(e) {
     e.preventDefault();
@@ -43,11 +43,11 @@ function UpdateRate({
   return (
     <div className="update">
       <br></br>
-      <h3>Rate this series!</h3>
       <div className="update-container">
         <form onSubmit={updateProgress}>
-          <label>How good is this?</label>
+          <label>Rating</label>
           <select onChange={(event) => setRankValue(event.target.value)}>
+            <option>0</option>
             <option>1</option>
             <option>2</option>
             <option>3</option>

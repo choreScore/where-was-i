@@ -31,3 +31,17 @@ body {
   cursor: pointer;
   background-color: #195044;
 }
+
+select{
+  background-color: #151515;
+  color:#EFDF9D;
+  padding: 10px 5px;
+  border: none;
+  border-radius: 3px;
+  margin-right: 5px;
+  margin-bottom: 30px;
+}
+
+select:focus{
+  outline: none;
+}
