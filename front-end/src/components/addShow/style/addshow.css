@@ -39,6 +39,7 @@
   border-radius: 4px;
   font-size: 17px;
   width: 120px;
+  margin: 0;
 }
 
 .genre:hover {
